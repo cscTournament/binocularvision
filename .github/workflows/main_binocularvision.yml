@@ -28,5 +28,5 @@ jobs:
       with:
         app-name: 'binocularvision'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4a812e6ece424e97bf6d558d70fca658 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c0b69ba160b347b5b22f11b1429effbd }}
         package: '${{ github.workspace }}/target/*.war'
