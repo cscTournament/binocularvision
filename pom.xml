@@ -8,8 +8,8 @@
 
   <groupId>by.gourianova.binocularvision</groupId>
   <artifactId>ListOfApps</artifactId>
-  <!-- <packaging>war</packaging>-->
-  <packaging>pom</packaging>
+ <packaging>war</packaging>
+   <!-- <packaging>pom</packaging>-->
 
   <version>1.0-SNAPSHOT</version>
     <modules>
@@ -42,11 +42,11 @@
     <!--  <scope>provided</scope>-->
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.glassfish.web/javax.servlet.jsp -->
-    <dependency>
+    <!-- <dependency>
       <groupId>org.glassfish.web</groupId>
       <artifactId>javax.servlet.jsp</artifactId>
       <version>2.3.4</version>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -68,12 +68,7 @@
       <artifactId>weld-servlet</artifactId>
       <version>2.4.8.Final</version>
     </dependency>
-    <!--    <dependency>
-          <groupId>org.projectlombok</groupId>
-          <artifactId>lombok</artifactId>
-          <version>1.18.12</version>
-          <scope>provided</scope>
-        </dependency>-->
+
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
@@ -82,18 +77,18 @@
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/javax.activation/activation -->
-    <dependency>
+  <!--  <dependency>
       <groupId>javax.activation</groupId>
       <artifactId>activation</artifactId>
       <version>1.1.1</version>
-    </dependency>
+    </dependency>-->
     <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
-    <dependency>
+  <!--  <dependency>
       <groupId>javax.mail</groupId>
       <artifactId>mail</artifactId>
       <version>1.4</version>
     </dependency>
-
+-->
     <!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
     <dependency>
       <groupId>com.sun.mail</groupId>
@@ -105,7 +100,7 @@
       <groupId>javax.servlet</groupId>
       <artifactId>jsp-api</artifactId>
       <version>2.0</version>
-      <scope>provided</scope>
+     <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -130,12 +125,12 @@
     </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-    <dependency>
+    <!--<dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
      <scope>provided</scope>
-    </dependency>
+    </dependency>-->
 
     <dependency>
       <groupId>org.apache.tomcat</groupId>
@@ -149,12 +144,7 @@
       <artifactId>log4j-core</artifactId>
       <version>2.14.0</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
-    <dependency>
-      <groupId>com.sun.mail</groupId>
-      <artifactId>smtp</artifactId>
-      <version>1.4.5</version>
-    </dependency>
+
 
     <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
     <dependency>
@@ -169,23 +159,7 @@
       <version>2.0</version>
       <scope>provided</scope>
     </dependency>-->
-    <!-- <dependency>
-         <groupId>by.gourianova.binocularvision</groupId>
-         <artifactId>Registration</artifactId>
-         <version>1.0</version>
-         <scope>compile</scope>
-       </dependency>-->
-    <!--    <dependency>
-       <groupId>by.gourianova.binocularvision</groupId>
-        <artifactId>WebRegistration</artifactId>
-        <version>1.0</version>
-        <scope>compile</scope>
-      </dependency>-->
-    <!--<dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jsp-api</artifactId>
-      <version>9.0.41</version>
-    </dependency>-->
+
   </dependencies>
   <build>
     <finalName>ListOfApps</finalName>
