@@ -16,7 +16,7 @@
 
     <servlet-mapping>
         <servlet-name>MyController</servlet-name>
-        <url-pattern>/Controller</url-pattern>
+        <url-pattern>/ListOfApps/Controller</url-pattern>
     </servlet-mapping>
 
     <context-param>
