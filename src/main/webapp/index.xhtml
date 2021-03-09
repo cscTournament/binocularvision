@@ -5,13 +5,18 @@
 
 <h:head>
     <title>Binocularvision Apps</title>
+    <style>
+        body {
+            background: url(images/bv.jpg);
+        }
+    </style>
 </h:head>
 <h:body>
 
     <p:layout fullPage="true">
         <p:layoutUnit style="background-color: lightseagreen; position: relative; height: 100px;" position="north" size="100"
                       resizable="false" closable="false" collapsible="true">
-            <div class="header-task" style="margin: 50px; padding: 20px;">
+            <div class="header-app" style="margin: 50px; padding: 20px;">
                 <p:outputLabel
                         style="color: #808080; font-size: 2em; position: absolute;top: 50%; -webkit-transform : translateY(-50%); transform : translateY(-50%);"
                         value="BinocularVision Apps"/>
@@ -20,7 +25,7 @@
 
         <p:layoutUnit position="center">
             <h:form id="updateForm">
-                <div class="task-lists" style="margin: 50px; padding: 20px;">
+                <div class="app-lists" style="margin: 50px; padding: 20px;">
                     <p:outputLabel value="Apps List" style="font-size: 18px;"/>
                     <p/>
 
@@ -42,7 +47,7 @@
                     </p:dataTable>
 
                     <div class="updatataks" style="margin: 15px">
-                        <p:commandButton value="Update App" id="updatatask" update="itemTables"
+                        <p:commandButton value="Update App" id="updateapp" update="itemTables"
                                          action="#{appcontroller.buttonUpdateAction()}" style="margin-right:20px;"
                                          styleClass="ui-priority-primary"/>
                     </div>
@@ -52,7 +57,7 @@
                 <hr style="margin: 50px;"/>
 
 
-                <div class="task-add" style="margin: 50px; padding: 20px;">
+                <div class="app-add" style="margin: 50px; padding: 20px;">
                     <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel style="font-size: 1.4em;" value="App's Type :"/>
                         <p:inputText style="font-size: 1.4em;" id="name" value="#{appcontroller.name}"/>
@@ -62,10 +67,17 @@
                         <p:inputText style="font-size: 1.4em;" id="category" value="#{appcontroller.category}"/>
                     </h:panelGrid>
                     <p/>
-                    <p:commandButton update="itemTables" value="Add App" id="addtask"
+                    <p:commandButton update="itemTables" value="Add App" id="addapp"
                                      action="#{appcontroller.buttonAddAction()}"
                                      style="margin-right:20px;" styleClass="ui-priority-primary"/>
                 </div>
+                <div class="registration"  style="margin: 50px; padding: 20px;">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel style="font-size: 16pt;" value="Where could I get my apps?"/>
+                    <a  href="/index" > More information and registration...</a> </h:panelGrid>
+                        <h:outputLink color="lightgreensea" value="registration"/>
+
+                </div>>
             </h:form>
         </p:layoutUnit>
     </p:layout>
