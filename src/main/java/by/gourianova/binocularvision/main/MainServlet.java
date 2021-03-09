@@ -1,6 +1,6 @@
 package by.gourianova.binocularvision.main;
 
-//import by.gourianova.binocularvision.Index;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +11,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
+//TODO: synhronize with site
 @WebServlet("/ListOfApps/index")
+//@WebServlet("/index")
 public class MainServlet extends HttpServlet {
 //Index index=new Index();
 
@@ -34,15 +35,21 @@ public class MainServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.write("<html>");
         out.write("<head>");
-        out.write("<title>Welcome servlet</title>");
+        out.write("<title>You are welcome!</title>");
+      //  out.write("<style>"+
+        //        "body {"+
+       //    "background: url(../webapp/images/bv.jpg);"+
+    //"}"+
+    //"</style>");
         out.write("</head>");
         out.write("<body>");
 
-
+        String message=req.getParameter("message");
 
         if (username == null) {
+
             //TODO: revise how on site
-          out.write("<center>"+"<img src=\"/images/bv.jpg\">"+"</center>");
+      out.write("<center>"+"<img src=\"logo_large.jpg\">"+"</center>");
             out.write("<br><br><br><br>");
             out.write("<center>"+"<h3>"+"Good day, Anonymous" + "<br>");
             out.write("<br>"+"<h3>"+"<center>"+
@@ -52,12 +59,18 @@ public class MainServlet extends HttpServlet {
                     "prevention of these disorders in healthy individuals,"+
                     "as well as developing apps for the stimulation of sensory-motor mechanisms and improve coordination and logical thinking. <br> Our apps are effectively used for children of preschool and school age"+
                     "</center>"+"</h3>");
+//TODO: to change status?
+      if (message==null) {
+          out.write("before you'll got an app or contact, you should register<br><br> " +
+                  "<h3>" + "<a href=\"Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "</center>");
+                 // "<h3>" + "<a href=\"/WEB-INF/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
+      }
+      else{
+          out.write("<h3>"+"<a href=\"Controller?command=gotoindexpage&"+message+"\">&Cscr;ontinue</a> "+"</h3>"+"</center>");
+            //"<h3>"+"<a href=\"Controller?command=gotoindexpage&message=Registration%20ok\">&Cscr;ontinue</a> "+"</h3>"+"</center>");
 
-            out.write("before you'll got an app or contact, you should register<br><br> " +
-                    "<h3>"+"<a href=\"Controller?command=gotoindexpage&message=Registration%20ok\">&Cscr;ontinue</a> "+"</h3>"+"</center>");
 
-
-        } else {
+        } }else {
             out.write("Good day, " + username + "<br>");
             out.write("Page was visited " +visitCounter + " times.");
 
