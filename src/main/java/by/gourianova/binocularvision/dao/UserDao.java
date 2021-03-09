@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class UserDao extends AbstractDao<User> {
     private final static String SQL_CREATE_USER = "INSERT INTO users (First_Name, Last_Name, Login, Password, Balance) VALUES (?, ?, ?, ?, ?);";
     private final static String SQL_FIND_ALL_USER = "SELECT * FROM users;";
-    private final static String SQL_FIND_USER_BY_ID = "SELECT * FROM users WHERE id = ?;";
+   private final static String SQL_FIND_USER_BY_ID = "SELECT * FROM users WHERE id = ?;";
     private final static String SQL_FIND_USER_BY_LOGIN_PASSWORD = "SELECT * FROM users WHERE login = ? AND password = ?;";
-    private final static String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login = ?;";
+   private final static String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login = ?;";
     private final static String SQL_UPDATE_BALANCE = "UPDATE users SET Balance=? WHERE Id=?;";
     private final static String SQL_UPDATE_ROLE = "UPDATE users SET Roles_Id=? WHERE Id=?;";
 

@@ -6,16 +6,18 @@ import by.gourianova.binocularvision.bean.User;
 import by.gourianova.binocularvision.dao.DAOException;
 import by.gourianova.binocularvision.dao.UserDAO2;
 
-public class SQLUserDAO {//implements UserDAO2{
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
+public class SQLUserDAO implements UserDAO2{
 
 	static {
 		MYSQLDriverLoader.getInstance();
 	}
-	//TODO: fix
-/*	@Override
+
+	@Override
 	public User authorization(String login, String password) throws DAOException {
 
-       System.out.println("USER AUTHORIZATION");
+       log.println("USER AUTHORIZATION");
 		
        return new User();
 	}
@@ -25,5 +27,5 @@ public class SQLUserDAO {//implements UserDAO2{
 		// TODO Auto-generated method stub
 		return false;
 	}
-*/
+
 }
