@@ -67,7 +67,7 @@ public class AppsListController implements Serializable {
     }
 
     public void onRowUnselect(UnselectEvent<AppItem> event) {
-        FacesMessage msg = new FacesMessage("Car Unselected", event.getObject().getId().toString());
+        FacesMessage msg = new FacesMessage("AppItem Unselected", event.getObject().getId().toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
