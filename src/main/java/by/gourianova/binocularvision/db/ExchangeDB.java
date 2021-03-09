@@ -8,7 +8,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ExchangeDB {
-        public static final String DB_URL = "jdbc:h2:E:\\new_doc\\Java\\jwd-task01-template_v2\\db\\exchange";
+    //TODO:fix or redone
+ /*       public static final String DB_URL = "jdbc:h2:E:\\new_doc\\Java\\jwd-task01-template_v2\\db\\exchange";
         public static final String DB_Driver = "org.h2.Driver";
 
         //SBD Tables
@@ -46,7 +47,7 @@ public class ExchangeDB {
 
             System.out.println("!!!Создана таблица " + connection.getClass().toString());
              //*/
-
+/*
             user=new User();
 
 
