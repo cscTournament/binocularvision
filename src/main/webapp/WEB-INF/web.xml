@@ -9,6 +9,16 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>MyController</servlet-name>
+        <servlet-class>by.gourianova.binocularvision.controller.Controller</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MyController</servlet-name>
+        <url-pattern>/Controller</url-pattern>
+    </servlet-mapping>
+
     <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>nova-light</param-value>
@@ -21,7 +31,7 @@
 
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
-    </welcome-file-list>
+      </welcome-file-list>
 
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
