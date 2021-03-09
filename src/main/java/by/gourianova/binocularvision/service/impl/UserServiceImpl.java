@@ -5,10 +5,11 @@ import by.gourianova.binocularvision.bean.User;
 import by.gourianova.binocularvision.dao.DAOException;
 import by.gourianova.binocularvision.dao.DAOProvider;
 import by.gourianova.binocularvision.dao.UserDAO2;
-import by.gourianova.binocularvision.service.ServiceException;
-import by.gourianova.binocularvision.service.UserService;
 
-public class UserServiceImpl{ }/* implements UserService {
+import by.gourianova.binocularvision.service.ServiceException;
+import by.gourianova.binocularvision.service.UserService2;
+
+public class UserServiceImpl implements UserService2 {
 	
 	@Override
 	public User authorization(String login, String password) throws ServiceException {
@@ -21,12 +22,12 @@ public class UserServiceImpl{ }/* implements UserService {
         UserDAO2 userDAO = provider.getUserdao();
         
 		User user = null;
-	//	try {
-		//	TODO: fix
-			user =  null;//userDAO2.authorization(login, password);
-		//}catch(DAOException e) {
-		//	throw new ServiceException("error message", e);
-	//	}
+		try {
+
+			user = userDAO.authorization(login, password);
+		}catch(DAOException e) {
+			throw new ServiceException("error message", e);
+		}
 		return user;
 	}
 
@@ -36,4 +37,4 @@ public class UserServiceImpl{ }/* implements UserService {
 		return false;
 	}
 
-}*/
+}
