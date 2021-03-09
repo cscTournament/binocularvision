@@ -162,8 +162,8 @@
 
   </dependencies>
   <build>
-    <finalName>/</finalName>
-    <!--    <finalName>ListOfApps</finalName>-->
+  <!--  <finalName>/</finalName>-->
+      <finalName>ListOfApps</finalName>
 <!--    <plugins>
     <plugin>
       <groupId>org.apache.tomcat.maven</groupId>
