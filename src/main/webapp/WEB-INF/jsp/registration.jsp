@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>Registration Form</title>
 </head>
 <body>
    <form action="/Controller" method="post">
@@ -12,9 +12,15 @@
 		Enter name:<br />
 		<input type="text" name="name" value="" /><br /> 
 		Enter surname:<br />
-		<input type="text" name="surname" value="" /><br /> 
-		
-		<input type="submit" value="Отправить" /><br />
+		<input type="text" name="surname" value="" /><br />
+	   Enter e'mail (it'll your login):<br />
+	   <input type="text" name="email" value="" /><br />
+	   Enter password:<br />
+	   <input type="text" name="password" value="" /><br />
+
+	  <!--  <input type="text" name="balance" value="" /><br />-->
+
+	   <input type="submit" value="Отправить" /><br />
 	</form>
 </body>
 </html>
