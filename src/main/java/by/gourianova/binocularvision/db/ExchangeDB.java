@@ -1,12 +1,13 @@
 package by.gourianova.binocularvision.db;
 
 
-import by.gourianova.binocularvision.repository.*;
+//import by.gourianova.binocularvision.repository.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 //TODO:fix or redone
+
 public class ExchangeDB {
 
  /*       public static final String DB_URL = "jdbc:h2:E:\\new_doc\\Java\\jwd-task01-template_v2\\db\\exchange";
