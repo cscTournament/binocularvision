@@ -1,0 +1,24 @@
+package by.gourianova.binocularvision.bean;
+
+public class UserLoginInfo {// Java Bean
+	private String login;
+	private String password;
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+}

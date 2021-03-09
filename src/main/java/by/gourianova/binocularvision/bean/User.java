@@ -22,6 +22,7 @@ public class User  extends Entity{
     private LocalDate create_time;
 
     public User() {
+
     }
 
     public User(int id, String login, String password, String firstName, String lastName,  BigDecimal balance, int roleId, LocalDate create_time) {
