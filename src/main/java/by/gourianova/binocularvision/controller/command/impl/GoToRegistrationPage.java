@@ -12,8 +12,8 @@ public class GoToRegistrationPage implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/registration.jsp");
+	//TODO:fix
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ListOfApps/jsp/registration.jsp");
 		requestDispatcher.forward(request, response);
 		
 	}
