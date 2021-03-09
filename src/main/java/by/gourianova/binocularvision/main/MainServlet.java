@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet("/index")
+@WebServlet("/ListOfApps/index")
 public class MainServlet extends HttpServlet {
 //Index index=new Index();
 
