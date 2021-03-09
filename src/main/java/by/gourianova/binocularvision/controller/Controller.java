@@ -43,7 +43,7 @@ public class Controller extends HttpServlet {
 		command.execute(request, response);
 	}
 	//TODO: fix
-/*	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Router router;
 		HttpSession session = request.getSession();
 		Action action = ActionFactory.getAction(request);
@@ -61,6 +61,6 @@ public class Controller extends HttpServlet {
 			session.setAttribute("message", "Wrong command.");
 			response.sendRedirect(PageConstant.ERROR_PAGE);
 		}
-	}*/
+	}
 
 }
