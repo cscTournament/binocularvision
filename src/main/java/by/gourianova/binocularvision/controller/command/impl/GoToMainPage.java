@@ -28,7 +28,7 @@ public class GoToMainPage implements Command {
 			return;
 		}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/main.jsp");
 		requestDispatcher.forward(request, response);
 
 	}

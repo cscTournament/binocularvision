@@ -3,8 +3,9 @@ package by.gourianova.binocularvision.controller.command.impl;
 import by.gourianova.binocularvision.bean.User;
 import  by.gourianova.binocularvision.controller.command.Command;
 //import  by.gourianova.binocularvision.service.ServiceException;
+import by.gourianova.binocularvision.service.ServiceException;
 import  by.gourianova.binocularvision.service.ServiceProvider;
-import  by.gourianova.binocularvision.service.UserService;
+import  by.gourianova.binocularvision.service.UserService2;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,12 +26,12 @@ public class Login implements Command {
 		password = request.getParameter("password");
 
 		ServiceProvider provider = ServiceProvider.getInstance();
-		UserService userService = provider.getUserService();
+		UserService2 userService2 = provider.getUserService2();
 
 		User user = null;
 		RequestDispatcher requestDispatcher = null;
 		try {
-		//	user = userService.authorization(login, password);
+			user = userService2.authorization(login, password);
 			
 			if (user == null) {
 				response.sendRedirect("Controller?command=gotoindexpage&message=wrong2");
@@ -41,8 +42,7 @@ public class Login implements Command {
 			session.setAttribute("auth", true);
 			response.sendRedirect("Controller?command=gotomainpage");
 
-		} catch (//Service
-				Exception e) {
+		} catch (ServiceException e) {
 			response.sendRedirect("Controller?command=gotoindexpage&message=wrong in catch");
 		}
 
