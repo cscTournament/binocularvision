@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 //TODO: synhronize with site
-@WebServlet("/ListOfApps/index")
-//@WebServlet("/index")
+//@WebServlet("/ListOfApps/index")
+@WebServlet("/index")
 public class MainServlet extends HttpServlet {
 //Index index=new Index();
 
@@ -68,7 +68,7 @@ public class MainServlet extends HttpServlet {
                  // "<h3>" + "<a href=\"/WEB-INF/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
       }
       else{
-          out.write("<h3>"+"<a href=\"Controller?command=gotoindexpage&"+message+"\">&Cscr;ontinue</a> "+"</h3>"+"</center>");
+          out.write("<h3>"+"<a href=\"ListOfApps/Controller?command=gotoindexpage&"+message+"\">&Cscr;ontinue</a> "+"</h3>"+"</center>");
             //"<h3>"+"<a href=\"Controller?command=gotoindexpage&message=Registration%20ok\">&Cscr;ontinue</a> "+"</h3>"+"</center>");
 
 

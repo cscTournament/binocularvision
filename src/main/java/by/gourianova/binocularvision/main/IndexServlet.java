@@ -16,7 +16,7 @@ public class IndexServlet extends HttpServlet {
 
 //           getServletContext().getRequestDispatcher("/ListOfApps/index").forward(req, resp); //if uncomment - the first page is registration
 
-      resp.sendRedirect(req.getContextPath() + "/ListOfApps/index");
-      //  resp.sendRedirect(req.getContextPath() + "/index");
+       //resp.sendRedirect(req.getContextPath() + "/ListOfApps/index");
+        resp.sendRedirect(req.getContextPath() + "/index");
     }
 }
