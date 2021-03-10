@@ -63,8 +63,8 @@ public class MainServlet extends HttpServlet {
       if (message==null) {
           out.write("before you'll got an app or contact, you should register<br><br> " +
                //   "<h3>" + "<a href=\"/ListOfApps/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
-
-                  "<h3>" + "<a href=\"/ListOfApps/Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "</center>");
+                  "<h3>" + "<a href=\"Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "</center>");
+                 // "<h3>" + "<a href=\"/ListOfApps/Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "</center>");
                  // "<h3>" + "<a href=\"/WEB-INF/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
       }
       else{
