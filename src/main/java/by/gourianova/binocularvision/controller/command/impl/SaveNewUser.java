@@ -32,8 +32,8 @@ public class SaveNewUser implements Command {
 
 
 		
-		response.sendRedirect("/ListOfApps/Controller?command=gotoindexpage&message="+request.getAttribute("message"));
-
+		//response.sendRedirect("Controller?command=gotoindexpage&message="+request.getAttribute("message"));
+		response.sendRedirect("ListOfApps/Controller?command=gotoindexpage&message="+request.getAttribute("message"));
 
 
 		//RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
