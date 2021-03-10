@@ -19,7 +19,7 @@ public class Logout implements Command{
 			session.removeAttribute("auth");
 		}
 		
-		response.sendRedirect("ListOfApps/Controller?command=gotoindexpage&message=logout ok");
+		response.sendRedirect("Controller?command=gotoindexpage&message=logout ok");
 		
 	}
 

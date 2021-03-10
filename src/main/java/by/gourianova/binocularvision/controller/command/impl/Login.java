@@ -34,16 +34,16 @@ public class Login implements Command {
 			user = userService2.authorization(login, password);
 			
 			if (user == null) {
-				response.sendRedirect("ListOfApps/Controller?command=gotoindexpage&message=wrong2");
+				response.sendRedirect("Controller?command=gotoindexpage&message=wrong2");
 				return;
 			}
 
 			HttpSession session = request.getSession(true);
 			session.setAttribute("auth", true);
-			response.sendRedirect("ListOfApps/Controller?command=gotomainpage");
+			response.sendRedirect("Controller?command=gotomainpage");
 
 		} catch (ServiceException e) {
-			response.sendRedirect("ListOfApps/Controller?command=gotoindexpage&message=wrong in catch");
+			response.sendRedirect("Controller?command=gotoindexpage&message=wrong in catch");
 		}
 
 	}

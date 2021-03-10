@@ -17,18 +17,18 @@ public class GoToMainPage implements Command {
 		HttpSession session = request.getSession();
 
 		if(session == null) {
-			response.sendRedirect("ListOfApps/Controller?command=gotoindexpage&message=eeerrror2");
+			response.sendRedirect("Controller?command=gotoindexpage&message=eeerrror2");
 			return;			
 		}
 		
 		Boolean isAuth = (Boolean) session.getAttribute("auth");
 
 		if (isAuth == null || !isAuth) {
-			response.sendRedirect("ListOfApps/Controller?command=gotoindexpage&message=eeerrror");
+			response.sendRedirect("Controller?command=gotoindexpage&message=eeerrror");
 			return;
 		}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ListOfApps/jsp/main.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/main.jsp");
 		requestDispatcher.forward(request, response);
 
 	}

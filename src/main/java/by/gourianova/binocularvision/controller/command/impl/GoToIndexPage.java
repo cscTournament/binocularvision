@@ -26,7 +26,7 @@ public class GoToIndexPage implements Command {
 			
 	//		request.setAttribute("news", news);
 			
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ListOfApps/jsp/main_index.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main_index.jsp");
 			requestDispatcher.forward(request, response);
 			
 		} catch (//Service
