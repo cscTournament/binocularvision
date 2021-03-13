@@ -1,12 +1,15 @@
 package by.gourianova.binocularvision.bean;
 
+import by.gourianova.binocularvision.util.myMD5;
+
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
 
-public class User  extends Entity{
+public class User extends Entity{
     private int id;
 
     private String login;
@@ -26,6 +29,7 @@ public class User  extends Entity{
     }
 
     public User(int id, String login, String password, String firstName, String lastName,  BigDecimal balance, int roleId, LocalDate create_time) {
+
         this.id = id;
 
         this.login = login;
