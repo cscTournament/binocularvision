@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLNewsDAO implements NewsDAO {
-	public static final String DB_URL = "jdbc:h2:E:\\Program Files\\Web\\db\\exchange";
+	//public static final String DB_URL = "jdbc:h2:E:\\Program Files\\Web\\db\\exchange";
 	static {
-		MYSQLDriverLoader.getInstance();
+	//	MYSQLDriverLoader.getInstance();
 	}
 
 	@Override
@@ -22,10 +22,10 @@ public class SQLNewsDAO implements NewsDAO {
 
 		List<News> news = null;
 		try {
-			con =DriverManager.getConnection(DB_URL);
+	//		con =DriverManager.getConnection(DB_URL);
 			//con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/news_management?useSSL=false&serverTimezone=UTC",
 			//		"root", "778899");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/useSSL=false&serverTimezone=UTC",
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/apptrainer?useSSL=false&serverTimezone=UTC",
 					"root", "778899");
 			
 			st = con.createStatement();
@@ -45,7 +45,7 @@ public class SQLNewsDAO implements NewsDAO {
 			throw new DAOException(e);
 		} finally {
 			try {
-				//if (con!=null)
+				if (con!=null)
 					con.close();
 			} catch (SQLException e) {
 				throw new DAOException(e);

@@ -1,7 +1,7 @@
 package by.gourianova.binocularvision.dao;
 
 public class DAOException extends Exception {
-	private static final long serialVersionUID = 5579627996438039829L;
+	//private static final long serialVersionUID = 5579627996438039829L;
 
 	public DAOException() {
 		super();

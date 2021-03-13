@@ -17,7 +17,7 @@ public abstract class AbstractDao<T extends Entity> {
 
     private final static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
-    public abstract Collection<T> findAll() throws DaoException;
+    public abstract Collection<T> findAll() throws DaoException, DAOException;
 
     public abstract T findEntityById(Integer id) throws DaoException;
 
