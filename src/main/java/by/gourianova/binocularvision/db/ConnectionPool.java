@@ -26,11 +26,16 @@ public class ConnectionPool {
         String url = ConfigurationManager.getProperty("dburl");
         String user = ConfigurationManager.getProperty("dbuser");
         String password = ConfigurationManager.getProperty("dbpassword");
+
+        System.out.println(url+" url " + user+" user " +password+" password ") ;
+
+        //TODO: redo
+url= "jdbc:mysql://localhost:3306/apptrainer";
         int maxConnections = Integer.parseInt(ConfigurationManager.getProperty("dbmaxconnections"));
         int maxIdle = Integer.parseInt(ConfigurationManager.getProperty("dbmaxIdle"));
         queue = new ArrayBlockingQueue<>(maxConnections);
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
             //первый раз пробуем
             for (int i = 0; i < maxConnections; i++) {
@@ -78,6 +83,13 @@ public class ConnectionPool {
             connection = queue.take();
         } catch (InterruptedException e) {
             LOGGER.log(Level.ERROR, e.getMessage());
+        }
+        finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return connection;
     }
