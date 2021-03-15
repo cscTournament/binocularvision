@@ -1,9 +1,8 @@
 package by.gourianova.binocularvision.controller.command.impl;
 
 //import by.gourianova.binocularvision.bean.News;
+
 import by.gourianova.binocularvision.controller.command.Command;
-//import by.gourianova.binocularvision.service.NewsService;
-//import by.gourianova.binocularvision.service.ServiceException;
 import by.gourianova.binocularvision.service.ServiceProvider;
 
 import javax.servlet.RequestDispatcher;

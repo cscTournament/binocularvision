@@ -1,16 +1,13 @@
 package by.gourianova.binocularvision.controller;
 
-import by.gourianova.binocularvision.dao.AppItemManagementInMemory;
+import by.gourianova.binocularvision.dao.impl.AppItemManagementInMemory;
 import by.gourianova.binocularvision.model.AppItem;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.CustomScoped;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
