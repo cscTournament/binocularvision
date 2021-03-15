@@ -1,5 +1,6 @@
 package by.gourianova.binocularvision.db;
 
+//import by.gourianova.binocularvision.util.ConfigurationManager;
 import by.gourianova.binocularvision.util.ConfigurationManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -20,10 +21,13 @@ public class ConnectionPool {
     private final static AtomicBoolean CREATE_INSTANCE = new AtomicBoolean(false);
     private static ReentrantLock lock = new ReentrantLock();
     private static ConnectionPool instance;
+
     private BlockingQueue<ProxyConnection> queue;
 
-    private ConnectionPool() {
-        String url = ConfigurationManager.getProperty("dburl");
+
+
+    public ConnectionPool() {
+       String url = ConfigurationManager.getProperty("dburl");
         String user = ConfigurationManager.getProperty("dbuser");
         String password = ConfigurationManager.getProperty("dbpassword");
 

@@ -1,46 +1,35 @@
 package by.gourianova.binocularvision.db;
 
 
-//import by.gourianova.binocularvision.repository.*;
 
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.SQLException;
 //TODO:fix or redone
 
-import by.gourianova.binocularvision.dao.impl.MYSQLDriverLoader;
+import by.gourianova.binocularvision.util.ConfigurationManager;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-//JDBC:
-//@Slf4j
+
+
 public class ExchangeDB {
         //TODO: rewrite for site
-/*
+
         public static void main(String[] args) {
-                String url = "jdbc:mysql://localhost:3306/apptrainer";
-                String username = "root";
-                String password = "778899";
+            String url = ConfigurationManager.getProperty("dburl");
+            String user = ConfigurationManager.getProperty("dbuser");
+            String password = ConfigurationManager.getProperty("dbpassword");
 
-                ConnectionPool connectionPool = ConnectionPool.getInstance();
-
-              /*  {
-                        MYSQLDriverLoader.getInstance();
-                }
-
-*/
-     /*           Connection connection =null;
-                Statement statement=null;
+               Connection connection =null;
+               Statement statement=null;
 
                 LocalDate date = LocalDateTime.now().toLocalDate();
                 System.out.println(date + "\n");
-                try {     connection = DriverManager.getConnection(url, username, password);
-                        statement = connection.createStatement();
-                        //     Class.forName("com.mysql.jdbc.Driver");
+                try {
 
+                       connection = DriverManager.getConnection(url,user,password);
+
+                   statement = connection.createStatement();
 
                         statement.executeUpdate("create table if not exists users(id INT(11) NOT NULL auto_increment," +
                                 "Login varchar(10) not null unique , Password varchar(32) not null,First_Name varchar(15) not null, " +
@@ -53,35 +42,33 @@ public class ExchangeDB {
 
                         ResultSet resultSet = statement.executeQuery("SELECT *FROM users");
                         while (resultSet.next()) {
-                                //log.info()
                                 for (int i = 1; i <= 7; i++)
-                                        System.out.print(resultSet.getString(i) + " ");
-                                System.out.println();
+                                System.out.print(resultSet.getString(i) + " ");
+                               System.out.println();
 
                         }
 
 
-                        // if (connection != null) connection.close();
 
                 } catch (
                         SQLException e) {
                         e.printStackTrace();
 
                 } finally {
-                        try {
+                        try {if (statement!=null)
                                 statement.close();
                         } catch (SQLException throwables) {
                                 throwables.printStackTrace();
                         }
-                        try {
-                                connection.close();
+                        try { if (connection != null)
+                            connection.close();
                         } catch (SQLException throwables) {
                                 throwables.printStackTrace();
                         }
 
                 }
 
-        }*/
+        }
 }
 
 
