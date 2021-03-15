@@ -1,11 +1,13 @@
 
 package by.gourianova.binocularvision.model;
 
+import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
+
 
 public class AppItem implements Serializable {
 
-	private static final long serialVersionUID = 6437012982370705547L;
+	private static final long serialVersionUID =  8244L;
 	private Long id;
     private String category;
     private String name;

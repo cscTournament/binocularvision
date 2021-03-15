@@ -2,39 +2,46 @@ package by.gourianova.binocularvision.service.impl;
 
 import by.gourianova.binocularvision.bean.RegistrationInfo;
 import by.gourianova.binocularvision.bean.User;
-import by.gourianova.binocularvision.dao.DAOException;
-
+import by.gourianova.binocularvision.dao.DAOException2;
 import by.gourianova.binocularvision.dao.DAOProvider;
 import by.gourianova.binocularvision.dao.UserDAO;
 import by.gourianova.binocularvision.service.ServiceException;
 import by.gourianova.binocularvision.service.UserService;
-import by.gourianova.binocularvision.util.MD5;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 
 public class UserServiceImpl implements UserService {
-
-	@Override
+	DAOProvider provider = DAOProvider.getInstance();
+	UserDAO userDAO = provider.getUserDao();
+@Override
 	public User authorization(String login, String password) throws ServiceException {
 		// validation
 		if (login == null || "".equals(login)) {// to bo cont....
 			throw new ServiceException("wrong login or password");
 		}
 
-		DAOProvider provider = DAOProvider.getInstance();
-		UserDAO userDAO = provider.getUserDao();
-		//password = new MD5().md5Encode(password);
-		//TODO MD5?
-		System.out.println(password + "password usimpl");
+
+	//	password = new MD5().md5Encode(password);
+		//TODO where put MD5?
+	log.println( "password NOT NUL  UserServiceImpl.authorization");
+
 		User user = null;
-		try {
-			user = userDAO.authorization(login, password);
-		} catch (DAOException e) {
-			throw new ServiceException("error message", e);
-		} catch (by.gourianova.binocularvision.dao.impl.DAOException e) {
-			System.out.println("Smth wrong with authorization at SQLUserDAO/UserServiceImpl");
-			e.printStackTrace();
-		}
-		if (user != null) System.out.println("usimpl");
+
+
+				try {
+					user = userDAO.authorization(login, password);
+				} catch (DAOException2 daoException2) {
+					daoException2.printStackTrace();
+				}
+			//} catch (DAOException daoException) {
+				//log.println();
+			//	throw new ServiceException("error message", daoException);
+			//	daoException.printStackTrace();
+			//}
+
+
+		if (user != null) log.println(" USER NOT NUL  UserServiceImpl.authorization");
 		return user;
 
 	}
@@ -45,8 +52,8 @@ public class UserServiceImpl implements UserService {
 
 		if (regInfo != null) {
 
-			DAOProvider provider = DAOProvider.getInstance();
-			UserDAO userDAO = provider.getUserDao();
+			//DAOProvider provider = DAOProvider.getInstance();
+			//UserDAO userDAO = provider.getUserDao();
 
 
 			try {
@@ -63,4 +70,4 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return isRegistered;}
-}
+	}

@@ -19,7 +19,13 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
+
+
+
+
+
         Integer visitCounter = (Integer) session.getAttribute("visitCounter");
         if (visitCounter == null) {
             visitCounter = 1;
@@ -29,6 +35,10 @@ public class MainServlet extends HttpServlet {
         }
 
 
+
+
+
+
         session.setAttribute("visitCounter", visitCounter);
         String username = req.getParameter("username");
         resp.setContentType("text/html");
@@ -36,17 +46,25 @@ public class MainServlet extends HttpServlet {
         out.write("<html>");
         out.write("<head>");
         out.write("<title>You are welcome!</title>");
-      //  out.write("<style>"+
-        //        "body {"+
-       //    "background: url(../webapp/images/bv.jpg);"+
-    //"}"+
-    //"</style>");
+
+        out.write("<style>"+
+                "body {"+
+           "background: url(../webapp/images/bv.jpg);"+
+    "}"+
+
+              "  hr{"+
+                        " background:\"lightgreensea\";"+
+               " background-color:\"lightgreensea\"; height: 12px;"+
+
+"        }"+
+    "</style>");
         out.write("</head>");
         out.write("<body>");
 
         String message=req.getParameter("message");
 
         if (username == null) {
+
 
             //TODO: revise how on site
       out.write("<center>"+"<img src=\"logo_large.jpg\">"+"</center>");
@@ -59,14 +77,21 @@ public class MainServlet extends HttpServlet {
                     "prevention of these disorders in healthy individuals,"+
                     "as well as developing apps for the stimulation of sensory-motor mechanisms and improve coordination and logical thinking. <br> Our apps are effectively used for children of preschool and school age"+
                     "</center>"+"</h3>");
+            //color="lightgreensea"
+            out.write("<center>&nbsp;<h3> <hr  width=30%  color=\"#20B2AA\" ></h3></center>");
 //TODO: to change status?
       if (message==null) {
           out.write("before you'll got an app or contact, you should register<br><br> " +
                //   "<h3>" + "<a href=\"/ListOfApps/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
-                  "<h3>" + "<a href=\"Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "</center>");
+                 // "<h3>" + "<a href=\"Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
+                 // "<h3>" + "<a href=\"/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
+                  "<h3>" + "<a href=\"/jsp/user_register.jsp\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
+          "<h3>" + "<a href=\"/jsp/user_login.jsp\">&Lscr;ogin</a> " + "</h3>" + "<br> " +
                  // "<h3>" + "<a href=\"/ListOfApps/Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "</center>");
                  // "<h3>" + "<a href=\"/WEB-INF/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
-      }
+          "<h3>" + "<a href=\"index.xhtml\">&Lscr;ist of &Ascr;pps</a> " + "</h3>" + "</center>");
+
+         }
       else{
           out.write("<h3>"+"<a href=\"ListOfApps/Controller?command=gotoindexpage&"+message+"\">&Cscr;ontinue</a> "+"</h3>"+"</center>");
             //"<h3>"+"<a href=\"Controller?command=gotoindexpage&message=Registration%20ok\">&Cscr;ontinue</a> "+"</h3>"+"</center>");

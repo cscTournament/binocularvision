@@ -8,11 +8,11 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 
-public class ConfigurationManager {
+public class ConfigurationManager2 {
     private final static Logger LOGGER = LogManager.getLogger(ConfigurationManager.class);
     private final static String CONFIGURATION = "configuration";
 
-    private ConfigurationManager() {
+    private ConfigurationManager2() {
     }
 
     public static String getProperty(String key) {
