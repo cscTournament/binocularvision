@@ -1,10 +1,34 @@
 package by.gourianova.binocularvision.bean;
 
+import java.time.LocalDate;
+
 public class RegistrationInfo { // Java Bean
     private String name;
     private String surname;
     private String email;
     private  String password;
+    private  String balance;
+
+    private LocalDate dateTime;
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public LocalDate getDateTime() {
+
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDate dateTime) {
+        this.dateTime = dateTime;
+    }
+
+
 
     RegistrationInfo(){
 
@@ -46,10 +70,12 @@ public class RegistrationInfo { // Java Bean
     }
 
 
-public  RegistrationInfo(String name, String surname,String email, String password){
+public  RegistrationInfo(String name, String surname,String email, String password, String balance, LocalDate dateTime){
     setName(name);
     setSurname(surname);
     setEmail(email);
     setPassword(password);
+    setBalance(balance);
+    setDateTime(dateTime);
 }
 }

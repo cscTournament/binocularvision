@@ -1,7 +1,5 @@
 package by.gourianova.binocularvision.bean;
 
-import by.gourianova.binocularvision.util.myMD5;
-
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,7 +7,7 @@ import java.util.Objects;
 
 
 
-public class User extends Entity{
+public class User{// extends Entity{
     private int id;
 
     private String login;
