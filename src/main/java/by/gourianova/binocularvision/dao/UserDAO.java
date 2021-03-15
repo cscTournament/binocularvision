@@ -1,20 +1,22 @@
 package by.gourianova.binocularvision.dao;
 
+
 import by.gourianova.binocularvision.bean.RegistrationInfo;
 import by.gourianova.binocularvision.bean.User;
+import by.gourianova.binocularvision.dao.impl.DAOException;
 
-
-import java.sql.SQLException;
-import java.util.Collection;
+import java.util.ArrayList;
 
 
 public interface UserDAO {
 
 
-    User authorization(String login, String password) throws DAOException, by.gourianova.binocularvision.dao.impl.DAOException;
+    User authorization(String login, String password) throws DAOException2;//, by.gourianova.binocularvision.dao.impl.DAOException;
 
-    boolean registration(RegistrationInfo regInfo) throws Exception;
+     boolean registration(RegistrationInfo regInfo) throws DAOException;
 
-    Collection<User> findAll() throws Exception;
+//    boolean registration(RegistrationInfo regInfo) throws by.gourianova.binocularvision.dao.impl.DAOException;
+
+    ArrayList<User> findAll() throws Exception;
 
 }

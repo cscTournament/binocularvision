@@ -1,9 +1,8 @@
 package by.gourianova.binocularvision.dao;
 
+import by.gourianova.binocularvision.bean.Entity;
 import by.gourianova.binocularvision.db.ConnectionPool;
 import by.gourianova.binocularvision.db.ProxyConnection;
-import by.gourianova.binocularvision.bean.Entity;
-import by.gourianova.binocularvision.exception.DaoException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,11 +16,11 @@ public abstract class AbstractDao<T extends Entity> {
 
     private final static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
-    public abstract Collection<T> findAll() throws DaoException, DAOException;
+    public abstract Collection<T> findAll() throws DAOException2;
 
-    public abstract T findEntityById(Integer id) throws DaoException;
+    public abstract T findEntityById(Integer id) throws DAOException2;
 
-    public abstract boolean createEntity(T entity) throws DaoException;
+    public abstract boolean createEntity(T entity) throws DAOException2;
 
     public void close(ProxyConnection connection) {
         try {

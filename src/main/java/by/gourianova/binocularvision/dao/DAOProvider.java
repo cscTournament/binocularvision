@@ -14,13 +14,11 @@ public class DAOProvider {
         return instance;
     }
 
-    public UserDAO getUserdao() {
-        return userdao;
-    }
-
     public UserDAO getUserDao() {
         return userdao;
     }
+
+
 
     //  public NewsDAO getNewsDAO() {
   //     return newsDAO;
