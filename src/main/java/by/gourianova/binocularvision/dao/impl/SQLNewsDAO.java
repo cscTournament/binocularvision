@@ -1,6 +1,6 @@
 package by.gourianova.binocularvision.dao.impl;
 
-import by.gourianova.binocularvision.bean.News;
+//import by.gourianova.binocularvision.bean.News;
 import by.gourianova.binocularvision.dao.DAOException;
 import by.gourianova.binocularvision.dao.NewsDAO;
 
@@ -8,8 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLNewsDAO implements NewsDAO {
-	//public static final String DB_URL = "jdbc:h2:E:\\Program Files\\Web\\db\\exchange";
+public class SQLNewsDAO{// implements NewsDAO {
+/*	//public static final String DB_URL = "jdbc:h2:E:\\Program Files\\Web\\db\\exchange";
 	static {
 	//	MYSQLDriverLoader.getInstance();
 	}
@@ -54,5 +54,5 @@ public class SQLNewsDAO implements NewsDAO {
 
 		return news;
 	}
-
+*/
 }
