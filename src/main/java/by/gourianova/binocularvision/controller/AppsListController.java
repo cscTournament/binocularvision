@@ -5,7 +5,10 @@ import by.gourianova.binocularvision.model.AppItem;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.CustomScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -14,7 +17,11 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named("appcontroller")
-@ViewScoped
+//@ViewScoped
+
+@SessionScoped
+//@SessionScoped
+//@CustomScoped:
 public class AppsListController implements Serializable {
 
 	private static final long serialVersionUID = 1L;

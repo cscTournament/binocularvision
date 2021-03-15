@@ -15,7 +15,12 @@ public class GoToRegistrationPage implements Command {
 	//TODO:fix
 		//RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ListOfApps/jsp/registration.jsp");
 
+		//RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/registration.jsp");
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/registration.jsp");
+		//RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/user_register.jsp");
+
+		//("/jsp/registration.jsp");
 		requestDispatcher.forward(request, response);
 		
 	}
