@@ -1,14 +1,14 @@
 package by.gourianova.binocularvision.service;
 
-import by.gourianova.binocularvision.dao.RoleDao;
-import by.gourianova.binocularvision.bean.Role;
-import by.gourianova.binocularvision.exception.DaoException;
+//import by.gourianova.binocularvision.dao.RoleDao;
+//import by.gourianova.binocularvision.bean.Role;
+//import by.gourianova.binocularvision.exception.DaoException;
 
 import java.util.ArrayList;
 
 
 public class RoleService {
-    private RoleDao roleDao = new RoleDao();
+ /*   private RoleDao roleDao = new RoleDao();
 
     public ArrayList<Role> findAll() throws ServiceException {
         try {
@@ -25,4 +25,6 @@ public class RoleService {
             throw new ServiceException("Transaction failed in createRole method", e);
         }
     }
+*/
 }
+
