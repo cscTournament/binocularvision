@@ -14,8 +14,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form action="/controller" method="post" class="form-horizontal">
-                <input type="hidden" name="action" value="login">
+            <form action="/Controller" method="post" class="form-horizontal">
+                <input type="hidden" name="command" value="login">
                 <div class="form-group">
                     <label for="loginForm" class="col-sm-2 control-label"><fmt:message key="register.form.login"/></label>
                     <div class="col-sm-10">

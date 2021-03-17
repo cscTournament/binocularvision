@@ -7,7 +7,7 @@
     <title>Binocularvision Apps</title>
     <style>
         body {
-            background: url(images/bv.jpg);
+            background: url(/images/bv.jpg);
         }
     </style>
 </h:head>
@@ -18,21 +18,25 @@
                       resizable="false" closable="false" collapsible="true">
             <div class="header-app" style="margin: 50px; padding: 20px;">
                 <p:outputLabel
-                        style="color: #808080; font-size: 2em; position: absolute;top: 50%; -webkit-transform : translateY(-50%); transform : translateY(-50%);"
-                        value="BinocularVision Apps"/>
+                        style="color: #808080; font-size: 2em; position: absolute;top: 50%; -webkit-transform : translateY(-50%); transform : translateY(-50%);  background: url(images/bv.jpg)"
+                        value="BinocularVision Apps"
+                />
             </div>
         </p:layoutUnit>
 
         <p:layoutUnit position="center">
             <h:form id="updateForm">
                 <div class="app-lists" style="margin: 50px; padding: 20px;">
-                    <p:outputLabel value="Apps List" style="font-size: 18px;"/>
+                    <p:outputLabel value="Apps List" style="font-size: 18px;background: url(images/bv.jpg)" />
+                    <img src="images/bv.jpg"/>
                     <p/>
 
                     <p:dataTable id="itemTables" var="item" value="#{appcontroller.appItems}"
-                                 disabledSelection="#{item.complete == true}"
+                                 disabledSelection="#{AppItem.complete == true}"
                                  selection="#{appcontroller.selectedItems}" rowKey="#{item.id}" paginator="true"
                                  paginatorPosition="bottom" rows="20">
+
+
 
                         <p:column headerText="Type">
                             <h:outputText value="#{item.name}"/>

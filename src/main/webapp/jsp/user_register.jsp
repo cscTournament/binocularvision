@@ -14,8 +14,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form action="/controller" method="post" class="form-horizontal">
-                <input type="hidden" name="action" value="register">
+            <form action="/Controller" method="post" class="form-horizontal">
+                <input type="hidden" name="command" value="savenewuser">
 
                 <div class="form-group">
                     <label for="first_nameForm" class="col-sm-3 control-label"><fmt:message key="register.form.first.name"/></label>
@@ -49,7 +49,7 @@
                         <b id="password" style="color: red; font-size: 10px;"><fmt:message key="validation.password"/></b>
                     </div>
                 </div>
-                <div class="form-group">
+                   <div class="form-group">
                     <label for="balanceForm" class="col-sm-3 control-label"><fmt:message key="register.form.balance"/></label>
                     <div class="col-sm-9">
                         <input type="number" step="0.01" id="balanceForm" name="balance" class="form-control" placeholder="<fmt:message key="register.form.balance.placeholder"/>"

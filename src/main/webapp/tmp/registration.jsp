@@ -7,7 +7,7 @@
 <title>Registration Form</title>
 </head>
 <body>
-   <form action="Controller" method="post">
+   <form action="/ListOfApps/Controller" method="post">
 		<input type="hidden" name="command" value="savenewuser" /> 
 		Enter name:<br />
 		<input type="text" name="name" value="" /><br /> 
