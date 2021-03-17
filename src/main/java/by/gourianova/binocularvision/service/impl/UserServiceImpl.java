@@ -14,6 +14,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 public class UserServiceImpl implements UserService {
 	DAOProvider provider = DAOProvider.getInstance();
 	UserDAO userDAO = provider.getUserDao();
+
 @Override
 	public User authorization(String login, String password) throws ServiceException {
 		// validation
