@@ -1,7 +1,5 @@
 package by.gourianova.binocularvision.main;
 
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import static by.gourianova.binocularvision.util.PageConstant.*;
 
 //TODO: synhronize with site
 //@WebServlet("/ListOfApps/index")
@@ -79,17 +79,15 @@ public class MainServlet extends HttpServlet {
                     "</center>"+"</h3>");
             //color="lightgreensea"
             out.write("<center>&nbsp;<h3> <hr  width=30%  color=\"#20B2AA\" ></h3></center>");
-//TODO: to change status?
-      if (message==null) {
-          out.write("before you'll got an app or contact, you should register<br><br> " +
-               //   "<h3>" + "<a href=\"/ListOfApps/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
-                 // "<h3>" + "<a href=\"Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
-                 // "<h3>" + "<a href=\"/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
-                  "<h3>" + "<a href=\"/ListOfApps/jsp/user_register.jsp\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
-          "<h3>" + "<a href=\"/ListOfApps/jsp/main_index.jsp\">&Lscr;ogin</a> " + "</h3>" + "<br> " +
-                 // "<h3>" + "<a href=\"/ListOfApps/Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "</center>");
-                 // "<h3>" + "<a href=\"/WEB-INF/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
-          "<h3>" + "<a href=\"index.xhtml\">&Lscr;ist of &Ascr;pps</a> " + "</h3>" + "</center>");
+            //TODO: to change status?
+
+            if (message==null) {
+            out.write("before you'll got an app or contact, you should register<br><br> " +
+
+
+                  "<h3>" + "<a href=\"" + REGISTER_PAGE    + "\">&Rscr;egistration</a> " +  "</h3>" + "<br> " +
+                  "<h3>" + "<a href=\"" + LOGIN_PAGE       + "\">&Lscr;ogin</a> " + "</h3>" + "<br> " +
+                   "<h3>" + "<a href=\""+  FIRST_PAGE       +"\">&Lscr;ist of &Ascr;pps</a> " + "</h3>" + "</center>");
 
          }
       else{
