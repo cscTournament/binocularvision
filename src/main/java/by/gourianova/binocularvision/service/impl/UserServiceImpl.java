@@ -5,8 +5,11 @@ import by.gourianova.binocularvision.bean.User;
 import by.gourianova.binocularvision.dao.DAOException2;
 import by.gourianova.binocularvision.dao.DAOProvider;
 import by.gourianova.binocularvision.dao.UserDAO;
+import by.gourianova.binocularvision.dao.impl.DAOException;
 import by.gourianova.binocularvision.service.ServiceException;
 import by.gourianova.binocularvision.service.UserService;
+
+import java.util.ArrayList;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
@@ -45,6 +48,23 @@ public class UserServiceImpl implements UserService {
 		if (user != null) log.println(" USER NOT NUL  UserServiceImpl.authorization");
 		return user;
 
+	}
+
+	@Override
+	public ArrayList<User> takeAll() throws ServiceException {
+
+		DAOProvider provider = DAOProvider.getInstance();
+		UserDAO userDAO = provider.getUserDao();
+
+		ArrayList<User> users;
+
+		try {
+			users = userDAO.findAll();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+
+		return users;
 	}
 
 	@Override
