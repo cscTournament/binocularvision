@@ -17,9 +17,6 @@ public class GoToIndexPage implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//		ServiceProvider provider = ServiceProvider.getInstance();
-//		NewsService newsService = provider.getNewsService();
-		
 		try {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(INDEX_PAGE);
 			requestDispatcher.forward(request, response);

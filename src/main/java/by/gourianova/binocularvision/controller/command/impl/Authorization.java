@@ -26,8 +26,6 @@ public class Authorization implements Command {
 		password = request.getParameter("password");
 		password= MD5.md5Encode(password);
 
-		//ServiceProvider provider = ServiceProvider.getInstance();
-		//UserService userService = provider.getUserService();
 
 //TODO: were MD5 password?
 		LocalDate updateTime=LocalDate.now();

@@ -1,6 +1,8 @@
 package by.gourianova.binocularvision.util;
 
 public class PageConstant {
+
+    //TODO: move to WEB+INF for safe?
     public final static String ERROR_PAGE = "jsp/error_page.jsp";
     public final static String MAIN_PAGE = "jsp/main.jsp";
     public final static String INDEX_PAGE="jsp/main_index.jsp";

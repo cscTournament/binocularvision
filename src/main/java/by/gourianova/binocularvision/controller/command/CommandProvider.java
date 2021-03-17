@@ -15,6 +15,7 @@ public class CommandProvider {
 		commands.put(CommandName.SAVENEWUSER, new SaveNewUser());
 		commands.put(CommandName.GOTOINDEXPAGE, new GoToIndexPage());
 		commands.put(CommandName.GOTOMAINPAGE, new GoToMainPage());
+		commands.put(CommandName.GOTOLOGINPAGE, new GoToLoginPage());
 		commands.put(CommandName.LOGOUT, new Logout());
 	}
 	
