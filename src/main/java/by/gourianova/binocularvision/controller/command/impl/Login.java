@@ -1,5 +1,6 @@
 package by.gourianova.binocularvision.controller.command.impl;
 
+import by.gourianova.binocularvision.bean.UserLoginInfo;
 import by.gourianova.binocularvision.bean.User;
 import by.gourianova.binocularvision.controller.command.Command;
 import by.gourianova.binocularvision.service.ServiceException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class Login implements Command {
 
@@ -27,18 +29,18 @@ public class Login implements Command {
 		//ServiceProvider provider = ServiceProvider.getInstance();
 		//UserService userService = provider.getUserService();
 
+//TODO: were MD5 password?
+		LocalDate updateTime=LocalDate.now();
+		UserLoginInfo loginInfo = new UserLoginInfo(request.getParameter("login"),password,updateTime);
 		UserService userService = new UserServiceImpl();
-
 
 		User user = null;
 		RequestDispatcher requestDispatcher = null;
 		try {user = userService.authorization(login, password);
-
 			if (user == null) {
 				response.sendRedirect("Controller?command=gotoindexpage&message=wrong2");
 				return;
 			}
-
 			HttpSession session = request.getSession(true);
 			session.setAttribute("auth", true);
 			response.sendRedirect("Controller?command=gotomainpage");

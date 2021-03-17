@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static by.gourianova.binocularvision.util.PageConstant.MAIN_PAGE;
+
 public class GoToMainPage implements Command {
 
 	@Override
@@ -28,7 +30,7 @@ public class GoToMainPage implements Command {
 			return;
 		}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/main.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(MAIN_PAGE);
 		requestDispatcher.forward(request, response);
 
 	}
