@@ -31,7 +31,7 @@ public class ChangeLocale implements Action {
         router.setRoute(Router.RouteType.REDIRECT);*/
 
 
-            //TODO подумать что делать с этим методом - пока тут костыль... когда идем форвардом мы не можем получить реферер страницы...
+            //TODO подумать что делать с этим методом  когда идем форвардом мы не можем получить реферер страницы...
             String referer = request.getHeader("referer");
 
           //TODO: rewrite

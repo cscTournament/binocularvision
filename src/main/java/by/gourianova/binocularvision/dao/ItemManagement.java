@@ -1,6 +1,6 @@
 package by.gourianova.binocularvision.dao;
 
-import by.gourianova.binocularvision.model.AppItem;
+import by.gourianova.binocularvision.bean.AppItem;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@
 package by.gourianova.binocularvision.dao.impl;
 
 import by.gourianova.binocularvision.dao.ItemManagement;
-import by.gourianova.binocularvision.model.AppItem;
+import by.gourianova.binocularvision.bean.AppItem;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.List;

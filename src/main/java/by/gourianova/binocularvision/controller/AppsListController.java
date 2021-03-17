@@ -1,7 +1,7 @@
 package by.gourianova.binocularvision.controller;
 
 import by.gourianova.binocularvision.dao.impl.AppItemManagementInMemory;
-import by.gourianova.binocularvision.model.AppItem;
+import by.gourianova.binocularvision.bean.AppItem;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
