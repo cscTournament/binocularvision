@@ -85,8 +85,8 @@ public class MainServlet extends HttpServlet {
                //   "<h3>" + "<a href=\"/ListOfApps/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
                  // "<h3>" + "<a href=\"Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
                  // "<h3>" + "<a href=\"/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
-                  "<h3>" + "<a href=\"/jsp/user_register.jsp\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
-          "<h3>" + "<a href=\"/jsp/user_login.jsp\">&Lscr;ogin</a> " + "</h3>" + "<br> " +
+                  "<h3>" + "<a href=\"/ListOfApps/jsp/user_register.jsp\">&Rscr;egistration</a> " + "</h3>" + "<br> " +
+          "<h3>" + "<a href=\"/ListOfApps/jsp/user_login.jsp\">&Lscr;ogin</a> " + "</h3>" + "<br> " +
                  // "<h3>" + "<a href=\"/ListOfApps/Controller?command=registration\">&Rscr;egistration</a> " + "</h3>" + "</center>");
                  // "<h3>" + "<a href=\"/WEB-INF/jsp/registration.jsp\">&Rscr;egistration</a> " + "</h3>" + "</center>");
           "<h3>" + "<a href=\"index.xhtml\">&Lscr;ist of &Ascr;pps</a> " + "</h3>" + "</center>");
