@@ -85,7 +85,7 @@ public class MainServlet extends HttpServlet {
             out.write("before you'll got an app or contact, you should register<br><br> " +
 
 
-                  "<h3>" + "<a href=\"" + REGISTER_PAGE    + "\">&Rscr;egistration</a> " +  "</h3>" + "<br> " +
+                  "<h3>" + "<a href=\"" + REGISTRATION_PAGE    + "\">&Rscr;egistration</a> " +  "</h3>" + "<br> " +
                   "<h3>" + "<a href=\"" + LOGIN_PAGE       + "\">&Lscr;ogin</a> " + "</h3>" + "<br> " +
                    "<h3>" + "<a href=\""+  FIRST_PAGE       +"\">&Lscr;ist of &Ascr;pps</a> " + "</h3>" + "</center>");
 
