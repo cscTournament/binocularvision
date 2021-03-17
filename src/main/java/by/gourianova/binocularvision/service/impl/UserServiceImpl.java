@@ -2,10 +2,9 @@ package by.gourianova.binocularvision.service.impl;
 
 import by.gourianova.binocularvision.bean.RegistrationInfo;
 import by.gourianova.binocularvision.bean.User;
-import by.gourianova.binocularvision.dao.DAOException2;
+import by.gourianova.binocularvision.dao.DAOException;
 import by.gourianova.binocularvision.dao.DAOProvider;
 import by.gourianova.binocularvision.dao.UserDAO;
-import by.gourianova.binocularvision.dao.impl.DAOException;
 import by.gourianova.binocularvision.service.ServiceException;
 import by.gourianova.binocularvision.service.UserService;
 
@@ -35,8 +34,8 @@ public class UserServiceImpl implements UserService {
 
 				try {
 					user = userDAO.authorization(login, password);
-				} catch (DAOException2 daoException2) {
-					daoException2.printStackTrace();
+				} catch (DAOException daoException) {
+					daoException.printStackTrace();
 				}
 			//} catch (DAOException daoException) {
 				//log.println();
@@ -73,10 +72,6 @@ public class UserServiceImpl implements UserService {
 
 		if (regInfo != null) {
 
-			//DAOProvider provider = DAOProvider.getInstance();
-			//UserDAO userDAO = provider.getUserDao();
-
-
 			try {
 				isRegistered = userDAO.registration(regInfo);
 			} catch (Exception e) {
@@ -86,7 +81,6 @@ public class UserServiceImpl implements UserService {
 			}
 			if (isRegistered)
 				System.out.println("UserServiceImpl OK, RegistrationInfo  != null");
-
 
 		}
 

@@ -1,7 +1,7 @@
 package by.gourianova.binocularvision.dao.impl;
 
 import by.gourianova.binocularvision.bean.Role;
-import by.gourianova.binocularvision.dao.DAOException2;
+import by.gourianova.binocularvision.dao.DAOException;
 import by.gourianova.binocularvision.dao.RoleDAO;
 import by.gourianova.binocularvision.db.ConnectionPool;
 import by.gourianova.binocularvision.db.ProxyConnection;
@@ -25,7 +25,7 @@ public class SQLRoleDAO implements RoleDAO {
     private final static String SQL_FIND_ROLE_BY_ID = "SELECT * FROM roles WHERE id = ?;";
 
     @Override
-    public ArrayList<Role> findAll() throws DAOException2 {
+    public ArrayList<Role> findAll() throws DAOException {
         ArrayList<Role> rolesList = new ArrayList<>();
         ProxyConnection connection = null;
         PreparedStatement preparedStatement = null;
@@ -40,7 +40,7 @@ public class SQLRoleDAO implements RoleDAO {
                 rolesList.add(role);
             }
         } catch (SQLException e) {
-            throw new DAOException2("Error in findAll", e);
+            throw new DAOException("Error in findAll", e);
         } finally {
             try {
                 preparedStatement.close();
@@ -57,7 +57,7 @@ public class SQLRoleDAO implements RoleDAO {
     }
 
     @Override
-    public Role findEntityById(Integer id) throws DAOException2 {
+    public Role findEntityById(Integer id) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement preparedStatement = null;
         Role role = null;
@@ -71,7 +71,7 @@ public class SQLRoleDAO implements RoleDAO {
                 role.setRole(resultSet.getString(2));
             }
         } catch (SQLException e) {
-            throw new DAOException2("Error in findEntityById", e);
+            throw new DAOException("Error in findEntityById", e);
         } finally {
             //TODO: decide *.close() or close(*)
             try {close(preparedStatement);
@@ -90,18 +90,18 @@ public class SQLRoleDAO implements RoleDAO {
     }
 
     @Override
-    public boolean createEntity(Role entity) throws DAOException2 {
+    public boolean createRole(Role entity) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement preparedStatement = null;
-        boolean isCreate;
+        boolean isCreated;
         try {
             connection = ConnectionPool.getInstance().getConnection();
             preparedStatement = connection.prepareStatement(SQL_CREATE_ROLE);
             preparedStatement.setString(1, entity.getRole());
             preparedStatement.executeUpdate();
-            isCreate = true;
+            isCreated = true;
         } catch (SQLException e) {
-            throw new DAOException2("Error in createEntity", e);
+            throw new DAOException("Error in createEntity", e);
         } finally {
             try {
                 close(preparedStatement);
@@ -115,6 +115,6 @@ public class SQLRoleDAO implements RoleDAO {
                 e.printStackTrace();
             }
         }
-        return isCreate;
+        return isCreated;
     }
 }

@@ -1,24 +1,41 @@
 package by.gourianova.binocularvision.bean;
 
+import java.time.LocalDate;
+
 public class UserLoginInfo {// Java Bean
-	private String login;
-	private String password;
+    LocalDate updateTime;
+    private String login;
+    private String password;
 
-	public String getLogin() {
-		return login;
-	}
+    public UserLoginInfo(String login, String password, LocalDate updateTime) {
+        this.login = login;
+        this.password = password;
+        this.updateTime = updateTime;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public String getLogin() {
+        return login;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDate getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDate updateTime) {
+        this.updateTime = updateTime;
+    }
 
 
 }

@@ -5,26 +5,37 @@ import java.sql.SQLException;
 
 public class User extends BaseTable implements TableOperations{
 
-     public User() throws SQLException {
-         super("user_table");
+    private String email;
+    private String name;
+    private String surname;
+    private String password;
+
+    public User(String name, String surname, String email, String password) throws SQLException {
+         super(surname+"_table");
+       this.email=email;
+       this.name=name;
+       this.surname=surname;
+       this.password=password;
      }
 
      @Override
      public void createTable() throws SQLException {
-        super.executeSqlStatement("CREATE TABLE IF NOT EXISTS user_table("+
+
+        super.executeSqlStatement("CREATE TABLE IF NOT EXISTS " +email+"_table("+
                  "id BIGINT AUTO_INCREMENT PRIMARY KEY," +
-                 "name NVARCHAR NOT NULL,"  +
-                  "surname NVARCHAR NOT NULL,"  +
-                  "email NVARCHAR NOT NULL,"  +
-                   "password NVARCHAR NOT NULL,"  +
+                name+" NVARCHAR NOT NULL,"  +
+                surname+ "NVARCHAR NOT NULL,"  +
+                email+ " NVARCHAR NOT NULL,"  +
+                password+" NVARCHAR NOT NULL,"  +
 
                  ")",  "Создана таблица " + tableName);
 
      }
      @Override
      public void createForeignKeys() throws SQLException {
-        super.executeSqlStatement(" ALTER TABLE oven_table ADD FOREIGN KEY (password) REFERENCES user_table(surname)",
-                 "Cоздан внешний ключ appliance. -> appliance.id");
+        //TODO: rewise
+        super.executeSqlStatement(" ALTER TABLE"  +email+"_table(\"+ ADD FOREIGN KEY (password) REFERENCES users_table(password)",
+                 "Cоздан внешний ключ user. -> user.id");
      }
 
      @Override

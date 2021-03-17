@@ -16,11 +16,11 @@ public abstract class AbstractDao<T extends Entity> {
 
     private final static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
-    public abstract Collection<T> findAll() throws DAOException2;
+    public abstract Collection<T> findAll() throws DAOException;
 
-    public abstract T findEntityById(Integer id) throws DAOException2;
+    public abstract T findEntityById(Integer id) throws DAOException;
 
-    public abstract boolean createEntity(T entity) throws DAOException2;
+    public abstract boolean createEntity(T entity) throws DAOException;
 
     public void close(ProxyConnection connection) {
         try {

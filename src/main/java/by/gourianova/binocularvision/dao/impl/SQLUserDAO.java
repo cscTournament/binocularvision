@@ -3,6 +3,7 @@ package by.gourianova.binocularvision.dao.impl;
 
 import by.gourianova.binocularvision.bean.RegistrationInfo;
 import by.gourianova.binocularvision.bean.User;
+import by.gourianova.binocularvision.dao.DAOException;
 import by.gourianova.binocularvision.dao.UserDAO;
 import by.gourianova.binocularvision.util.ConfigurationManager;
 
@@ -193,7 +194,6 @@ public class SQLUserDAO implements UserDAO {
 
         return usersList;
     }
-
 
 
     @Override
