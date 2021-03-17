@@ -52,7 +52,7 @@
 	<br />
 	<center>&nbsp;<h3> <hr  width=30%  color="#20B2AA" ></h3></center>
 	<br />
-	<center><h3> http addresses of your apps:</h3></center>
+	<center><h3> your apps:</h3></center>
 	<center>&nbsp;<h3> <hr  width=30%  color="#20B2AA" ></h3></center>
 	<br />
 	<center>
@@ -61,7 +61,8 @@
 		<tr>
 			<td>
 			   <font size="18" color="blue">
-			   <c:out value="${a.category}" />
+
+				   <a href="<c:out value="${a.category}" />"><c:out value="${a.name}" /> </a>
 			</font></td>
 		</tr>
 		</c:forEach>
