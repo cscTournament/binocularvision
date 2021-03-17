@@ -17,6 +17,6 @@ public interface UserDAO {
 
 //    boolean registration(RegistrationInfo regInfo) throws by.gourianova.binocularvision.dao.impl.DAOException;
 
-    ArrayList<User> findAll() throws Exception;
+    ArrayList<User> findAll() throws DAOException;;
 
 }
