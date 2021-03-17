@@ -3,7 +3,7 @@ package by.gourianova.binocularvision.bean;
 import java.util.Objects;
 
 
-public class Role{// extends Entity {
+public class Role{
     private int id;
     private String role;
 

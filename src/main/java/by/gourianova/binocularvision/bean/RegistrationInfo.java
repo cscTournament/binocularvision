@@ -2,7 +2,7 @@ package by.gourianova.binocularvision.bean;
 
 import java.time.LocalDate;
 
-public class RegistrationInfo { // Java Bean
+public class RegistrationInfo {
     private String name;
     private String surname;
     private String email;

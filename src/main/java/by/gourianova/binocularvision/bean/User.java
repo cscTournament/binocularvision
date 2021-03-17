@@ -7,7 +7,7 @@ import java.util.Objects;
 
 
 
-public class User{// extends Entity{
+public class User{
     private int id;
 
     private String login;

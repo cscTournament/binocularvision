@@ -3,12 +3,10 @@ package by.gourianova.binocularvision.dao.impl;
 import by.gourianova.binocularvision.bean.Role;
 import by.gourianova.binocularvision.dao.DAOException;
 import by.gourianova.binocularvision.dao.RoleDAO;
-import by.gourianova.binocularvision.db.ConnectionPool;
-import by.gourianova.binocularvision.db.ProxyConnection;
+import by.gourianova.binocularvision.util.ConfigurationManager;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
@@ -16,6 +14,10 @@ import static org.apache.logging.log4j.core.util.Closer.close;
 
 public class SQLRoleDAO implements RoleDAO {
 
+
+    static {
+        MYSQLDriverLoader.getInstance();
+    }
 
     private final static String SQL_CREATE_TABLE_ROLES = "create table if not exists users(id INT(11) NOT NULL auto_increment," +
             "Role varchar(20),  primary key (id) );";
@@ -27,12 +29,19 @@ public class SQLRoleDAO implements RoleDAO {
     @Override
     public ArrayList<Role> findAll() throws DAOException {
         ArrayList<Role> rolesList = new ArrayList<>();
-        ProxyConnection connection = null;
+
+
+        String db_url = ConfigurationManager.getProperty("dburl");
+        String db_user = ConfigurationManager.getProperty("dbuser");
+        String db_password = ConfigurationManager.getProperty("dbpassword");
+        Connection connection = null;
+        Statement statement = null;
         PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = DriverManager.getConnection(db_url, db_user, db_password);
             preparedStatement = connection.prepareStatement(SQL_FIND_ALL_ROLES);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Role role = new Role();
                 role.setId(resultSet.getInt(1));
@@ -58,13 +67,18 @@ public class SQLRoleDAO implements RoleDAO {
 
     @Override
     public Role findEntityById(Integer id) throws DAOException {
-        ProxyConnection connection = null;
+        String db_url = ConfigurationManager.getProperty("dburl");
+        String db_user = ConfigurationManager.getProperty("dbuser");
+        String db_password = ConfigurationManager.getProperty("dbpassword");
+        Connection connection = null;
+        Statement statement = null;
         PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         Role role = null;
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = DriverManager.getConnection(db_url, db_user, db_password);
             preparedStatement = connection.prepareStatement(SQL_FIND_ROLE_BY_ID);
-            ResultSet resultSet = preparedStatement.executeQuery();
+             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 role = new Role();
                 role.setId(resultSet.getInt(1));
@@ -91,11 +105,16 @@ public class SQLRoleDAO implements RoleDAO {
 
     @Override
     public boolean createRole(Role entity) throws DAOException {
-        ProxyConnection connection = null;
+        String db_url = ConfigurationManager.getProperty("dburl");
+        String db_user = ConfigurationManager.getProperty("dbuser");
+        String db_password = ConfigurationManager.getProperty("dbpassword");
+        Connection connection = null;
+        Statement statement = null;
         PreparedStatement preparedStatement = null;
-        boolean isCreated;
+        ResultSet resultSet = null;
+        boolean isCreated=false;
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = DriverManager.getConnection(db_url, db_user, db_password);
             preparedStatement = connection.prepareStatement(SQL_CREATE_ROLE);
             preparedStatement.setString(1, entity.getRole());
             preparedStatement.executeUpdate();

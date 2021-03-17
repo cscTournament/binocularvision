@@ -42,7 +42,7 @@ public class SQLUserDAO implements UserDAO {
     @Override
     public boolean registration(RegistrationInfo regInfo) throws DAOException {
 
-        //TODO: через прокси
+        //TODO: через прокси?
         //Proxy
         String db_url = ConfigurationManager.getProperty("dburl");
         String db_user = ConfigurationManager.getProperty("dbuser");

@@ -2,7 +2,7 @@ package by.gourianova.binocularvision.bean;
 
 import java.time.LocalDate;
 
-public class UserLoginInfo {// Java Bean
+public class UserLoginInfo {
     LocalDate updateTime;
     private String login;
     private String password;
