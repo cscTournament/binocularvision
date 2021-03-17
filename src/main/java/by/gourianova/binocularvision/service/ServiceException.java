@@ -1,7 +1,7 @@
 package by.gourianova.binocularvision.service;
 
 public class ServiceException extends Exception{
-	//private static final long serialVersionUID = -2795804103099775537L;
+	private static final long serialVersionUID = -2795804103099775537L;
 
 	public ServiceException() {
 		super();
