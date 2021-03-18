@@ -43,28 +43,31 @@ public class MainServlet extends HttpServlet {
         out.write("</head>");
         out.write("<body>");
         String message=req.getParameter("message");
+        //TODO: redone to get real name of authorized user
         if (username == null) {
 
-            //TODO: revise how on site
+            //TODO: to choose font
       out.write("<center>"+"<img src=\"logo_large.jpg\">"+"</center>");
-            out.write("<br><br><br><br>");
-            out.write("<center>"+"<h3>"+"Good day, Anonymous" + "<br>");
-            out.write("<br>"+"<h3>"+"<center>"+
-            "We represent the scope of medical apps for the training and rehabilitation of disorders of binocular"+
+            out.write("<br><br> " +
+                    "<p style=\"font-family=glyphicon\">");
+         //   out.write("<center>"+"<h3>"+"Good day, Anonymous" + "<br>");
+            out.write("<p style=\"font-family=glyphicon\">"+"<br>"+"<h3>"+"<center>"+
+                    "<p style=\"font-family=glyphicon\">"+"We represent the scope of medical apps for the training and rehabilitation of disorders of binocular"+
                    "and monocular vision"+
-                    "<br> (including  strabismus  amblyopia),<br>"+
+                    "<br> (including  strabismus  amblyopia), <br>"+
                     "prevention of these disorders in healthy individuals,"+
                     "as well as developing apps for the stimulation of sensory-motor mechanisms and improve coordination and logical thinking. <br> Our apps are effectively used for children of preschool and school age"+
-                    "</center>"+"</h3>");
+                    "</center>"+"</font>"+"</h3>");
 
             out.write("<center>&nbsp;<h3> <hr  width=30%  color=\"#20B2AA\" ></h3></center>");
             //TODO: to change status?
             if (message==null) {
-            out.write("before you'll got an app or contact, you should register<br><br> " +
+            out.write(" <p style=\"font-family=glyphicon\"> <center> before you'll got an app or contact, you should register<br><br></center> " +
 
-                  "<h3>" + "<a href=\"" + REGISTRATION_PAGE    + "\">&Rscr;egistration</a> " +  "</h3>" + "<br> " +
-                  "<h3>" + "<a href=\"" + LOGIN_PAGE       + "\">&Lscr;ogin</a> " + "</h3>" + "<br> " +
-                   "<h3>" + "<a href=\""+  FIRST_PAGE       +"\">&Lscr;ist of &Ascr;pps</a> " + "</h3>" + "</center>");
+                 "<center>"+ "<h3>" + "<a href=\"" + REGISTRATION_PAGE    + "\">&Rscr;egistration</a> " +  "</h3>" + "<center>"+"<br> " +
+                    "<center>"+"<h3>" + "<a href=\"" + LOGIN_PAGE       + "\">&Lscr;ogin</a> " + "</h3>" + "</center>"+"<br> " +
+                   "<center>"+"<h3>" + "<a href=\""+  FIRST_PAGE       +"\">&Lscr;ist of &Ascr;pps</a> " + "</h3>" + "</center>" +"</p>");
+
          }
       else{
           out.write("<h3>"+"<a href=\"ListOfApps/Controller?command=gotoindexpage&"+message+"\">&Cscr;ontinue</a> "+"</h3>"+"</center>");
