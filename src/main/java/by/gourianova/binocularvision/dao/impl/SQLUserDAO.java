@@ -142,9 +142,9 @@ public class SQLUserDAO implements UserDAO {
             preparedStatement.setString(2, password);
 
             resultSet = preparedStatement.executeQuery();
-            try {if (resultSet.next()){
+            if (resultSet.next()){
 
-                int   id = resultSet.getInt("id");
+                int   id = resultSet.getInt("Id");
                                String name = resultSet.getString("First_Name");
                 String surname = resultSet.getString("Last_Name");
                 BigDecimal balance = resultSet.getBigDecimal("Balance");
@@ -156,9 +156,6 @@ public class SQLUserDAO implements UserDAO {
                 log.println("found user " + name + " " + surname );
 
 
-            } }catch (SQLException e) {
-                log.println("couildn't operate with resultset SQLUserDAO.autharisation.setValues");
-                e.printStackTrace();
             }
 
         } catch (SQLException e) {
@@ -218,7 +215,7 @@ public class SQLUserDAO implements UserDAO {
 
             resultSet =statement.executeQuery(SQL_FIND_ALL_USER);
 
-            while (resultSet.next()) {
+           if(resultSet.next()) {
                 int id = resultSet.getInt("Id");
                 String login = resultSet.getString("Login");
                 String password = resultSet.getString("Password");
