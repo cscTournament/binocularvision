@@ -12,6 +12,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 		import java.io.IOException;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +44,7 @@ public class Controller extends HttpServlet {
 		try {
 			command.execute(request, response);
 		} catch (Exception e) {
-			System.out.println("Smth wrong with Controller process try it later");
+			log.println("Smth wrong with Controller process try it later");
 			e.printStackTrace();
 		}
 	}

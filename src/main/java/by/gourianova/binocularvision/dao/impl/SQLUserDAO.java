@@ -9,6 +9,7 @@ import by.gourianova.binocularvision.util.ConfigurationManager;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
@@ -26,6 +27,19 @@ public class SQLUserDAO implements UserDAO {
     private final static String SQL_FIND_ALL_USER = "SELECT * FROM users;";
     private final static String SQL_FIND_USER_BY_LOGIN_PASSWORD = "SELECT * FROM users WHERE login = ? AND password = ?;";
 
+    private static Connection connection;
+
+    private static int id;
+    private static String login;
+    private static String password;
+    private static String name;
+    private static String surname;
+    private static String balance;
+    private static LocalDate date;
+    private static int roles_id;
+    private static String status;
+
+
  //   private final static String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login = ?;";
    // private static final String OPEN_SESSION = "UPDATE users set session = 'online' WHERE id = ?;";
 
@@ -33,10 +47,26 @@ public class SQLUserDAO implements UserDAO {
 
 //	private final static String SQL_CREATE_USER = "INSERT INTO users (Login, Password, First_Name, Last_Name,  Balance, Create_time) VALUES (?, ?, ?, ?, ?,?);";
 
-
     static {
-        MYSQLDriverLoader.getInstance();
+      MYSQLDriverLoader.getInstance();
     }
+
+  public static void connectionToData() {
+
+
+
+      String db_url = ConfigurationManager.getProperty("dburl");
+      String db_user = ConfigurationManager.getProperty("dbuser");
+      String db_password = ConfigurationManager.getProperty("dbpassword");
+
+      try {
+          connection = DriverManager.getConnection(db_url, db_user, db_password);
+      } catch (SQLException e) {
+          log.println("Couldn'n connect to data base");
+          e.printStackTrace();
+      }
+
+  }
 
 
     @Override
@@ -44,29 +74,26 @@ public class SQLUserDAO implements UserDAO {
 
         //TODO: через прокси?
         //Proxy
-        String db_url = ConfigurationManager.getProperty("dburl");
-        String db_user = ConfigurationManager.getProperty("dbuser");
-        String db_password = ConfigurationManager.getProperty("dbpassword");
-        Connection connection = null;
+
+
         Statement statement = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         boolean isRegistered = false;
 
-		//TODO: проверять на уникальность логина?
+		//TODO: is it necessary to check uniq of login  ?
 
         try {
-            connection = DriverManager.getConnection(db_url, db_user, db_password);
-
-            statement = connection.createStatement();
+            connectionToData();
+           statement = connection.createStatement();
 
             //TODO: delete?
             statement.executeUpdate(SQL_CREATE_TABLE_USERS);
 
-            String login = regInfo.getEmail();
+            String login = regInfo.getLogin();
             preparedStatement = connection.prepareStatement(SQL_CREATE_USER);
-            System.out.println(regInfo.getEmail());
-            preparedStatement.setString(1, regInfo.getEmail());
+            System.out.println(regInfo.getLogin());
+            preparedStatement.setString(1, regInfo.getLogin());
             preparedStatement.setString(2, regInfo.getPassword());
             preparedStatement.setString(3, regInfo.getName());
             preparedStatement.setString(4, regInfo.getSurname());
@@ -95,7 +122,7 @@ public class SQLUserDAO implements UserDAO {
                     e.printStackTrace();
                 }
             }
-            try {
+          try {
                 statement.close();
             } catch (SQLException e) {
                 log.println("Couldn't close statement");
@@ -128,38 +155,38 @@ public class SQLUserDAO implements UserDAO {
 
         //TODO: через прокси?
         //Proxy
-        String db_url = ConfigurationManager.getProperty("dburl");
-        String db_user = ConfigurationManager.getProperty("dbuser");
-        String db_password = ConfigurationManager.getProperty("dbpassword");
-        Connection connection = null;
-           PreparedStatement preparedStatement = null;
+      //  Connection connection = null;
+
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         User user = null;
 
-        try {connection = DriverManager.getConnection(db_url, db_user, db_password);
+
+    try{        connectionToData();
             preparedStatement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_PASSWORD);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
 
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()){
+           //TODO: while?
+           if (resultSet.next()) {
 
-                int   id = resultSet.getInt("Id");
-                               String name = resultSet.getString("First_Name");
-                String surname = resultSet.getString("Last_Name");
-                BigDecimal balance = resultSet.getBigDecimal("Balance");
-                //TODO: role and date!!!
-                int role = resultSet.getInt("Role");
-
+               int id = resultSet.getInt("Id");
+               String name = resultSet.getString("First_Name");
+               String surname = resultSet.getString("Last_Name");
+               BigDecimal balance = resultSet.getBigDecimal("Balance");
+               //TODO: role and date!!!
+               //  int role = resultSet.getInt("Role");
+               int role = 3;
                // LocalDate create_date = resultSet.getDate("Create_time").toLocalDate();
-                user = new User(id, login, password, name, surname, balance, role);//, create_date);
-                log.println("found user " + name + " " + surname );
+               user = new User(id, login, password, name, surname, balance, role);//, create_date);
+               log.println("found user " + name + " " + surname);
 
+           }
 
-            }
 
         } catch (SQLException e) {
-            if (user == null)
+
                 //TODO:&&&&
                 try {
                     throw new DAOException("Error in SQLUserDAO.authorization method", e);
@@ -197,25 +224,17 @@ public class SQLUserDAO implements UserDAO {
 
 		return user;
     }
-
-
-
-    @Override
+//TODO:debug
+ @Override
     public ArrayList<User> findAll() throws DAOException {
-        ArrayList<User> usersList = new ArrayList<>();
-        String db_url = ConfigurationManager.getProperty("dburl");
-        String db_user = ConfigurationManager.getProperty("dbuser");
-        String db_password = ConfigurationManager.getProperty("dbpassword");
-        //Proxy
-        Connection connection = null;
-        Statement statement = null;
+     ArrayList<User> usersList = new ArrayList<>();
+/*        Statement statement = null;
         ResultSet resultSet=null;
         try {
-            connection = DriverManager.getConnection(db_url, db_user, db_password);
-
+            connectionToData();
             resultSet =statement.executeQuery(SQL_FIND_ALL_USER);
 
-           if(resultSet.next()) {
+           if (resultSet.next()) {
                 int id = resultSet.getInt("Id");
                 String login = resultSet.getString("Login");
                 String password = resultSet.getString("Password");
@@ -254,7 +273,7 @@ public class SQLUserDAO implements UserDAO {
                 }
             }
         }
-
+*/
         return usersList;
     }
 

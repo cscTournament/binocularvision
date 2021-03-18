@@ -22,6 +22,7 @@ public class ChangeLocale implements Action {
             HttpSession session = request.getSession();
             String locale = LocaleType.getLocale(request.getParameter(LOCALE));
             session.setAttribute(LOCALE, locale);
+            //TODO: rewrite
             Cookie c = new Cookie(LOCALE, locale);
           //  c.setMaxAge(60 * 60 * 24 * 30);
             response.addCookie(c);
@@ -31,14 +32,17 @@ public class ChangeLocale implements Action {
         router.setRoute(Router.RouteType.REDIRECT);*/
 
 
-            //TODO подумать что делать с этим методом  когда идем форвардом мы не можем получить реферер страницы...
+
             String referer = request.getHeader("referer");
 
           //TODO: rewrite
-         //  String
 
-            log.println(request.getContextPath()+"referer !!!!!!!!!!!!!!!!!!!!!!!!");
-            if (referer.equals("http://localhost:8098/Controller")) {
+
+            log.println(request.getContextPath()+" request.getContextPath() ");
+            log.println(request.getServletContext()+" getServletContext()");
+            log.println(referer+" referer");
+
+            if (referer.equals("http://localhost:8058/Controller")) {
                 router.setPagePath((String) request.getSession().getAttribute(REFERRER));
                 // router.setPagePath(PageConstant.FIRST_PAGE);
                 router.setRoute(Router.RouteType.REDIRECT);

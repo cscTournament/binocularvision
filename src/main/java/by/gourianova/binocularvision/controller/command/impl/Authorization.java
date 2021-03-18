@@ -6,6 +6,7 @@ import by.gourianova.binocularvision.controller.command.Command;
 import by.gourianova.binocularvision.service.ServiceException;
 import by.gourianova.binocularvision.service.UserService;
 import by.gourianova.binocularvision.service.impl.UserServiceImpl;
+
 import by.gourianova.binocularvision.util.MD5;
 
 import javax.servlet.RequestDispatcher;
@@ -26,7 +27,7 @@ public class Authorization implements Command {
 		String password;
 		String login = request.getParameter("login");
 		password = request.getParameter("password");
-		password = MD5.md5Encode(password);
+		password =  MD5.md5Encode(password);
 
 
 		LocalDate updateTime = LocalDate.now();
@@ -38,7 +39,7 @@ public class Authorization implements Command {
 		try {
 			user = userService.authorization(login, password);
 			if (user == null) {
-				response.sendRedirect("Controller?command=gotoindexpage&message=wrong2");
+				response.sendRedirect("Controller?command=gotoindexpage&message=UserNotFound");
 				return;
 			}
 			else{

@@ -9,6 +9,7 @@ public class PageConstant {
     public final static String FIRST_PAGE = "index.xhtml";
     public final static String REGISTRATION_PAGE = "jsp/user_register.jsp";
     public final static String LOGIN_PAGE = "jsp/user_login.jsp";
+
     //TODO: write:
     //  public final static String ALL_USERS = "includeAdmin/user_show_all.jsp";
     //  public final static String UPDATE_USER = "includeAdmin/user_change.jsp";

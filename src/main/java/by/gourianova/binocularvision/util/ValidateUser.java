@@ -58,9 +58,9 @@ public class ValidateUser {
             return WRONG_PASSWORD;
         }
 
-        /*if (!BALANCE_PATTERN.matcher((user.getBalance()).toString()).matches()) {
+        if (!BALANCE_PATTERN.matcher((user.getBalance()).toString()).matches()) {
             return WRONG_BALANCE;
-        }*/
+        }
         return null;
     }
 

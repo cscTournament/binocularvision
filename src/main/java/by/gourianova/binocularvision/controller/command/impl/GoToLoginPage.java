@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.gourianova.binocularvision.util.PageConstant.ERROR_PAGE;
 import static by.gourianova.binocularvision.util.PageConstant.LOGIN_PAGE;
 
 public class GoToLoginPage implements Command {
@@ -23,7 +24,7 @@ public class GoToLoginPage implements Command {
 			
 		} catch (//Service
 				Exception e) {
-			// TODO перейти на глобальную страницу ошибок
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(ERROR_PAGE);
 			e.printStackTrace();
 		}	
 	
