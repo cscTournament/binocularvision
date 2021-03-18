@@ -38,7 +38,7 @@ public class ChangeLocale implements Action {
          //  String
 
             log.println(request.getContextPath()+"referer !!!!!!!!!!!!!!!!!!!!!!!!");
-            if (referer.equals("http://localhost:7788/Controller")) {
+            if (referer.equals("http://localhost:8098/Controller")) {
                 router.setPagePath((String) request.getSession().getAttribute(REFERRER));
                 // router.setPagePath(PageConstant.FIRST_PAGE);
                 router.setRoute(Router.RouteType.REDIRECT);

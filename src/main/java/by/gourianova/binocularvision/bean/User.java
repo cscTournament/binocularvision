@@ -26,7 +26,7 @@ public class User{
 
     }
 
-    public User(int id, String login, String password, String firstName, String lastName,  BigDecimal balance, int roleId, LocalDate create_time) {
+    public User(int id, String login, String password, String firstName, String lastName,  BigDecimal balance, int roleId){//, LocalDate create_time) {
 
         this.id = id;
 
@@ -38,7 +38,7 @@ public class User{
         this.balance = balance;
         this.roleId = roleId;
 
-        this.create_time=create_time;
+       // this.create_time=create_time;
     }
 
     public int getId() {

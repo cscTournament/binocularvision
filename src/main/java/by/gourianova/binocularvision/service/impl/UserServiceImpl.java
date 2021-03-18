@@ -30,18 +30,14 @@ public class UserServiceImpl implements UserService {
 	log.println( "password NOT NUL  UserServiceImpl.authorization");
 
 		User user = null;
-
+	log.println("try to find user with "+login+" login and "+ password+" password ");
 
 				try {
 					user = userDAO.authorization(login, password);
+
 				} catch (DAOException daoException) {
 					daoException.printStackTrace();
 				}
-			//} catch (DAOException daoException) {
-				//log.println();
-			//	throw new ServiceException("error message", daoException);
-			//	daoException.printStackTrace();
-			//}
 
 
 		if (user != null) log.println(" USER NOT NUL  UserServiceImpl.authorization");

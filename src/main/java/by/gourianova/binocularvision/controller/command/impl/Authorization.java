@@ -1,7 +1,7 @@
 package by.gourianova.binocularvision.controller.command.impl;
 
-import by.gourianova.binocularvision.bean.UserLoginInfo;
 import by.gourianova.binocularvision.bean.User;
+import by.gourianova.binocularvision.bean.UserLoginInfo;
 import by.gourianova.binocularvision.controller.command.Command;
 import by.gourianova.binocularvision.service.ServiceException;
 import by.gourianova.binocularvision.service.UserService;
@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 public class Authorization implements Command {
 
 	@Override
@@ -24,21 +26,25 @@ public class Authorization implements Command {
 		String password;
 		String login = request.getParameter("login");
 		password = request.getParameter("password");
-		password= MD5.md5Encode(password);
+		password = MD5.md5Encode(password);
 
 
-//TODO: were MD5 password?
-		LocalDate updateTime=LocalDate.now();
-		UserLoginInfo loginInfo = new UserLoginInfo(request.getParameter("login"),password,updateTime);
+		LocalDate updateTime = LocalDate.now();
+		UserLoginInfo loginInfo = new UserLoginInfo(login,password,updateTime);
 		UserService userService = new UserServiceImpl();
 
 		User user = null;
 		RequestDispatcher requestDispatcher = null;
-		try {user = userService.authorization(login, password);
+		try {
+			user = userService.authorization(login, password);
 			if (user == null) {
 				response.sendRedirect("Controller?command=gotoindexpage&message=wrong2");
 				return;
 			}
+			else{
+			log.println("AUTHORISATION OK");
+		}
+
 			HttpSession session = request.getSession(true);
 			session.setAttribute("auth", true);
 			response.sendRedirect("Controller?command=gotomainpage");
@@ -48,5 +54,4 @@ public class Authorization implements Command {
 		}
 
 	}
-
 }
