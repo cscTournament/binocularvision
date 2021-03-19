@@ -10,11 +10,23 @@
 <body>
 
 	<h1 align="center">
-		!!! Welcome !!!
+		!!! You are welcome !!!
 	</h1>
-	
+	<center>
+		<h3>
+	<a  href="/userPhotoServlet">logo</a>
+
 	<br/>
-	
-	<a href="Controller?command=logout">logout</a>
+	<hr  width=30%  color="#20B2AA" >
+	<a  href="Controller?command=logout">logout</a>
+	<br>
+	<hr  width=30%  color="#20B2AA" >
+	<a  href="index.xhtml ">To edit list of apps</a>
+	<br>
+	<hr  width=30%  color="#20B2AA" >
+	<a  href="/index ">About apps</a>
+	<hr  width=30%  color="#20B2AA" >
+			</h3>
+		</center>
 </body>
 </html>

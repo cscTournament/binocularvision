@@ -4,8 +4,8 @@
 <br>
 <nav class="navbar navbar-default navbar-fixed-bottom" style="background: #20B2aa">
     <div class="container-fluid">
-        <form class="navbar-form navbar-right" action="/controller" method="POST">
-            <input type="hidden" name="action" value="change_locale">
+        <form class="navbar-form navbar-right" action="/Controller" method="POST">
+            <input type="hidden" name="command" value="changelocale">
             <select title="locale" name="locale" class="form-control input-sm"
                     onchange="if (this.selectedIndex) this.form.submit ()">
 

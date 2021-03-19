@@ -10,7 +10,7 @@
 <body>
 !!!
 	<%
-//		response.sendRedirect("Controller?command=gotoindexpage");
+		response.sendRedirect("Controller?command=gotoindexpage");
 	%>
 </body>
 </html>

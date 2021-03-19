@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" import="java.util.List"%>
 <%@ page import="by.gourianova.binocularvision.controller.AppsListController" %>
-<%@ page import="by.gourianova.binocularvision.model.AppItem" %>
+<%@ page import="by.gourianova.binocularvision.bean.AppItem" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -33,16 +33,9 @@
 
 	</font>
 
-	<form action="Controller" method="post">
-		<input type="hidden" name="command" value="login" /> Enter
-		login:<br /> <input type="text" name="login" value="" alt="email" /><br />
-		Enter password:<br /> <input type="password" name="password" value="" /><br />
-
-		<input type="submit" value="Отправить" /><br />
-	</form>
-
+<br />
+	<a href="Controller?command=gotologinpage">Login</a>
 	<br />
-
 	<a href="Controller?command=registration">Registration</a>
 
 	<br />
