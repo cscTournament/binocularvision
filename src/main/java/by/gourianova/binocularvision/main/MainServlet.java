@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static by.gourianova.binocularvision.util.PageConstant.*;
+import static by.gourianova.binocularvision.util.PageOfConstants.*;
 
 @WebServlet("/index")
 public class MainServlet extends HttpServlet {
@@ -55,7 +55,7 @@ public class MainServlet extends HttpServlet {
                     "<p style=\"font-family=glyphicon\">"+"We represent the scope of medical apps for the training and rehabilitation of disorders of binocular"+
                    "and monocular vision"+
                     "<br> (including  strabismus  amblyopia), <br>"+
-                    "prevention of these disorders in healthy individuals,"+
+                    "prevention of these disorders in healthy individuals,&nbsp;"+
                     "as well as developing apps for the stimulation of sensory-motor mechanisms and improve coordination and logical thinking. <br> Our apps are effectively used for children of preschool and school age"+
                     "</center>"+"</font>"+"</h3>");
 

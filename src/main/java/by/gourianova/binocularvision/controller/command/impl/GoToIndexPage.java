@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.gourianova.binocularvision.util.PageConstant.INDEX_PAGE;
+import static by.gourianova.binocularvision.util.PageOfConstants.INDEX_PAGE;
 
 public class GoToIndexPage implements Command {
 

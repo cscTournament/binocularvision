@@ -1,57 +1,31 @@
 package by.gourianova.binocularvision.controller.command.impl;
 
-import by.gourianova.binocularvision.controller.Action;
-import by.gourianova.binocularvision.controller.Router;
+import by.gourianova.binocularvision.controller.command.Command;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
-
-public class ChangeLocale implements Action {
-        private final static String LOCALE = "locale";
-        private final static String REFERRER = "referrer";
-
-        @Override
-        public Router execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            Router router = new Router();
-            HttpSession session = request.getSession();
-            String locale = LocaleType.getLocale(request.getParameter(LOCALE));
-            session.setAttribute(LOCALE, locale);
-            //TODO: rewrite
-            Cookie c = new Cookie(LOCALE, locale);
-          //  c.setMaxAge(60 * 60 * 24 * 30);
-            response.addCookie(c);
-
-            //TODO:
-      /*  router.setPagePath((String) request.getSession().getAttribute(REFERRER));
-        router.setRoute(Router.RouteType.REDIRECT);*/
+import static by.gourianova.binocularvision.util.PageOfConstants.ERROR_PAGE;
 
 
+public class ChangeLocale implements Command {
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            String referer = request.getHeader("referer");
+        try {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ChangeLocaleAction");
+            requestDispatcher.forward(request, response);
 
-          //TODO: rewrite
-
-
-            log.println(request.getContextPath()+" request.getContextPath() ");
-            log.println(request.getServletContext()+" getServletContext()");
-            log.println(referer+" referer");
-
-            if (referer.equals("http://localhost:8058/Controller")) {
-                router.setPagePath((String) request.getSession().getAttribute(REFERRER));
-                // router.setPagePath(PageConstant.FIRST_PAGE);
-                router.setRoute(Router.RouteType.REDIRECT);
-            } else {
-                router.setPagePath(referer);
-                router.setRoute(Router.RouteType.REDIRECT);
-            }
-            return router;
+        } catch (
+                Exception e) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(ERROR_PAGE);
+            requestDispatcher.forward(request, response);
+            e.printStackTrace();
         }
 
 
+    }
 }

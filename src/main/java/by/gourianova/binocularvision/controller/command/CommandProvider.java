@@ -5,6 +5,8 @@ import by.gourianova.binocularvision.controller.command.impl.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 public class CommandProvider {
 
 	private Map<CommandName, Command> commands = new HashMap<>();
@@ -16,6 +18,7 @@ public class CommandProvider {
 		commands.put(CommandName.GOTOINDEXPAGE, new GoToIndexPage());
 		commands.put(CommandName.GOTOMAINPAGE, new GoToMainPage());
 		commands.put(CommandName.GOTOLOGINPAGE, new GoToLoginPage());
+	  // commands.put(CommandName.CHANGELOCALE, new ChangeLocale());
 		commands.put(CommandName.LOGOUT, new Logout());
 	}
 	
@@ -24,7 +27,7 @@ public class CommandProvider {
 	CommandName commandName;
 		
 		commandName = CommandName.valueOf(name.toUpperCase());
-		
+		log.println(commandName +" commandName");
 		return commands.get(commandName);
 	}
 

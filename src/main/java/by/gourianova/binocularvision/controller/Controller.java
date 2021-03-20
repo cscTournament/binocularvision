@@ -1,116 +1,98 @@
 package by.gourianova.binocularvision.controller;
 
-//import by.gourianova.binocularvision.controller.action.*;
-//import by.gourianova.binocularvision.util.PageConstant;
-//import lombok.SneakyThrows;
 
 import by.gourianova.binocularvision.controller.command.Command;
+import by.gourianova.binocularvision.controller.command.CommandName;
 import by.gourianova.binocularvision.controller.command.CommandProvider;
+import by.gourianova.binocularvision.util.PageOfConstants;
 
 import javax.servlet.ServletException;
-		import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-		import java.io.IOException;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 public class Controller extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    boolean isAction = false;
 
-	private final CommandProvider provider = new CommandProvider();
+    private final CommandProvider provider = new CommandProvider();
 
-	public Controller() {
-		super();
-	}
+    public Controller() {
+        super();
+    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		process(request, response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		process(request, response);
-	}
+        process(request, response);
+    }
 
-	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name;
-		Command command;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+         process(request, response);
+    }
 
-		name = request.getParameter("command");
-		command = provider.takeCommand(name);
 
-		try {
-			command.execute(request, response);
-		} catch (Exception e) {
-			log.println("Smth wrong with Controller process try it later");
-			e.printStackTrace();
-		}
-	}
+
+    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        Command command = null;
+
+      //  log.println(name + " name");
+        Router router;
+
+        HttpSession session = request.getSession();
+
+        String name = request.getParameter("command");
+            boolean isAction = true;
+            try {
+                ActionType.valueOf(name.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                log.println("not  change local name:" + name.toUpperCase());
+                isAction = false;
+            }
+            if (isAction) {
+
+                Action action = ActionFactory.getAction(request);
+                if (action != null) {
+                    router = action.execute(request, response);
+                    switch (router.getRoute()) {
+                        case REDIRECT:
+                            response.sendRedirect(router.getPagePath());
+                            break;
+                        case FORWARD:
+                            request.getRequestDispatcher(router.getPagePath()).forward(request, response);
+                            break;
+                    }
+                } else {
+                    session.setAttribute("message", "Wrong command.");
+                    response.sendRedirect(PageOfConstants.ERROR_PAGE);
+                }
+            }
+    else {
+        boolean isCommand = false;
+        try {
+            CommandName.valueOf(name.toUpperCase());
+            isCommand = true;
+        }catch (Exception e){throw new IllegalArgumentException ("not command maybe change local " + name.toUpperCase());}
+
+        if (isCommand) {
+            command = provider.takeCommand(name);
+            try {
+                command.execute(request, response);
+            } catch (Exception e) {
+                //throw new IllegalArgumentException("Smth wrong with Controller process try it later");
+                response.sendRedirect(PageOfConstants.ERROR_PAGE);
+                e.printStackTrace();
+            }
+           }
+        }
+ }
 }
-//@WebServlet(name = "controller", urlPatterns = "/controller")
-/*
-public class Controller extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	private final CommandProvider provider = new CommandProvider(); 
 
-	public Controller() {
-		super();
-	}
-		
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//try {
-			process(request, response);
-	/*	} catch (Exception e) {
-			//TODO: logged
-			System.out.println("Smth wrong with  Controller doGet try it later");
-			e.printStackTrace();
-		}*/
-	//}
 
-	//@SneakyThrows
-/*	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		try {
-			process(request, response);
-		} catch (Exception e) {
-			//TODO: logged
-			System.out.println("Smth wrong with  Controller doPost try it later");
-			e.printStackTrace();
-		}
-	}
-	
-	private void process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String name;
-		Command command;
-		
-		name = request.getParameter("command");
-		command = provider.takeCommand(name);
-		
-		command.execute(request, response);
-	}
-*/
-/*private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Router router;
-		HttpSession session = request.getSession();
-		Action action = ActionFactory.getAction(request);
-		if (action != null) {
-			router = action.execute(request, response);
-			switch (router.getRoute()) {
-				case REDIRECT:
-					response.sendRedirect(router.getPagePath());
-					break;
-				case FORWARD:
-					request.getRequestDispatcher(router.getPagePath()).forward(request, response);
-					break;
-			}
-		} else {
-			session.setAttribute("message", "Wrong command.");
-			response.sendRedirect(PageConstant.ERROR_PAGE);
-		}
-	}*/
-
-//}

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.gourianova.binocularvision.util.PageConstant.REGISTRATION_PAGE;
+import static by.gourianova.binocularvision.util.PageOfConstants.REGISTRATION_PAGE;
 
 public class GoToRegistrationPage implements Command {
 

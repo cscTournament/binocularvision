@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.gourianova.binocularvision.util.PageConstant.ERROR_PAGE;
-import static by.gourianova.binocularvision.util.PageConstant.LOGIN_PAGE;
+import static by.gourianova.binocularvision.util.PageOfConstants.ERROR_PAGE;
+import static by.gourianova.binocularvision.util.PageOfConstants.LOGIN_PAGE;
 
 public class GoToLoginPage implements Command {
 

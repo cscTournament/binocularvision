@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static by.gourianova.binocularvision.util.PageConstant.MAIN_PAGE;
+import static by.gourianova.binocularvision.util.PageOfConstants.MAIN_PAGE;
 
 public class GoToMainPage implements Command {
 

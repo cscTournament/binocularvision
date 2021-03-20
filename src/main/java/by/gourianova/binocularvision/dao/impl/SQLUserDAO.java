@@ -53,28 +53,20 @@ public class SQLUserDAO implements UserDAO {
 
   public static void connectionToData() {
 
-
-
       String db_url = ConfigurationManager.getProperty("dburl");
       String db_user = ConfigurationManager.getProperty("dbuser");
       String db_password = ConfigurationManager.getProperty("dbpassword");
-
       try {
           connection = DriverManager.getConnection(db_url, db_user, db_password);
       } catch (SQLException e) {
           log.println("Couldn'n connect to data base");
           e.printStackTrace();
       }
-
   }
 
 
     @Override
     public boolean registration(RegistrationInfo regInfo) throws DAOException {
-
-        //TODO: через прокси?
-        //Proxy
-
 
         Statement statement = null;
         PreparedStatement preparedStatement = null;
