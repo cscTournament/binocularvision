@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" import="java.util.List, by.gourianova.binocularvision.*"%>
 <%@ page import="by.gourianova.binocularvision.controller.AppsListController" %>
-<%@ page import="by.gourianova.binocularvision.model.AppItem" %>
+<%@ page import="by.gourianova.binocularvision.bean.AppItem" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>

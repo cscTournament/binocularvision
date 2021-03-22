@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:comment="http://java.sun.com/jsf/core">
 
 <h:head>
-    <title>Binocularvision Apps</title>
-    <style>
-        body {
-            background: url(/images/bv.jpg);
-        }
-    </style>
+    <title >Binocularvision Apps</title>
+ <!--  <h:graphicImage value="/userPhotoServlet?userId=#{profileBean.userId}" width="110" height="150" />-->
 </h:head>
 <h:body>
 
@@ -18,8 +14,9 @@
                       resizable="false" closable="false" collapsible="true">
             <div class="header-app" style="margin: 50px; padding: 20px;">
                 <p:outputLabel
-                        style="color: #808080; font-size: 2em; position: absolute;top: 50%; -webkit-transform : translateY(-50%); transform : translateY(-50%);  background: url(images/bv.jpg)"
+                        style="color: #FFFFFF; font-size: 2em; position: absolute;top: 50%; -webkit-transform : translateY(-50%); transform : translateY(-50%);  background: url(WEB-INF/bv.jpg)"
                         value="BinocularVision Apps"
+
                 />
             </div>
         </p:layoutUnit>
@@ -27,8 +24,8 @@
         <p:layoutUnit position="center">
             <h:form id="updateForm">
                 <div class="app-lists" style="margin: 50px; padding: 20px;">
-                    <p:outputLabel value="Apps List" style="font-size: 18px;background: url(images/bv.jpg)" />
-                    <img src="images/bv.jpg"/>
+                    <p:outputLabel value="Apps List" style="font-size: 18px;background: url(WEB-INF/bv.jpg)" />
+
                     <p/>
 
                     <p:dataTable id="itemTables" var="item" value="#{appcontroller.appItems}"
@@ -78,10 +75,10 @@
                 <div class="registration"  style="margin: 50px; padding: 20px;">
                 <h:panelGrid columns="2" cellpadding="5">
                     <p:outputLabel style="font-size: 16pt;" value="Where could I get my apps?"/>
-                    <a  href="/ListOfApps/index" > More information and registration...</a> </h:panelGrid>
+                    <a  href="/index" > More information and registration...</a> </h:panelGrid>
                         <h:outputLink color="lightgreensea" value="index"/>
 
-                </div>>
+                </div>
             </h:form>
         </p:layoutUnit>
     </p:layout>
