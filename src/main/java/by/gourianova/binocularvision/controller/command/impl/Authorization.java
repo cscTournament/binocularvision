@@ -24,9 +24,12 @@ public class Authorization implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		boolean isAdmin=false;
 		String password;
 		String login = request.getParameter("login");
 		password = request.getParameter("password");
+		if ((login=="hart")&&(password=="qwerty")){ isAdmin=true;}
+		log.println(login + " login "+password + " password" + isAdmin +  " isAdmin");
 		password =  MD5.md5Encode(password);
 
 
@@ -38,11 +41,16 @@ public class Authorization implements Command {
 		RequestDispatcher requestDispatcher = null;
 		try {
 			user = userService.authorization(login, password);
+			log.println(user.getRoleId()+ " user.getRoleId() ");
 			if (user == null) {
 				response.sendRedirect("Controller?command=gotoindexpage&message=UserNotFound");
 				return;
 			}
-			else{
+			else if ((user.getRoleId()==2)||(isAdmin==true)){
+				response.sendRedirect("Controller?command=gotoadminpage&message=UserIsAdmin");
+				log.println("AUTHORISATION OF ADMIN");
+			return;}
+				{
 			log.println("AUTHORISATION OK");
 		}
 

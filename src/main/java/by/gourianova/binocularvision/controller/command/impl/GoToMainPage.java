@@ -30,6 +30,7 @@ public class GoToMainPage implements Command {
 			return;
 		}
 
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(MAIN_PAGE);
 		requestDispatcher.forward(request, response);
 

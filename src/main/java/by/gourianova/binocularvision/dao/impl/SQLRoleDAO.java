@@ -14,32 +14,76 @@ import static org.apache.logging.log4j.core.util.Closer.close;
 
 public class SQLRoleDAO implements RoleDAO {
 
-
-    static {
-        MYSQLDriverLoader.getInstance();
-    }
-
     private final static String SQL_CREATE_TABLE_ROLES = "create table if not exists users(id INT(11) NOT NULL auto_increment," +
             "Role varchar(20),  primary key (id) );";
+    private final static String SQL_CREATE_ROLE = "INSERT INTO roles (Role) VALUES (?);";
 
     private final static String SQL_FIND_ALL_ROLES = "SELECT * FROM roles";
-    private final static String SQL_CREATE_ROLE = "INSERT INTO roles (Role) VALUES (?);";
+
     private final static String SQL_FIND_ROLE_BY_ID = "SELECT * FROM roles WHERE id = ?;";
+
+    private static Connection connection;
+
+    //TODO: move code to connectionPool code: to create!
+    public static void connectionToData() {
+
+        String db_url = ConfigurationManager.getProperty("dburl");
+        String db_user = ConfigurationManager.getProperty("dbuser");
+        String db_password = ConfigurationManager.getProperty("dbpassword");
+        try {
+            connection = DriverManager.getConnection(db_url, db_user, db_password);
+        } catch (SQLException e) {
+            log.println("Couldn'n connect to data base");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean createRole(Role entity) throws DAOException {
+
+        Statement statement = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        boolean isCreated=false;
+        try {connectionToData();
+            statement = connection.createStatement();
+
+            //TODO: delete or remove?
+            statement.executeUpdate(SQL_CREATE_TABLE_ROLES);
+            preparedStatement = connection.prepareStatement(SQL_CREATE_ROLE);
+            preparedStatement.setString(1, entity.getRole());
+            preparedStatement.executeUpdate();
+            isCreated = true;
+        } catch (SQLException e) {
+            throw new DAOException("Error in createEntity", e);
+        } finally {
+            try {
+                close(preparedStatement);
+            } catch (Exception e) {
+                log.println("couldn't close preparedStatement SQLRoleDAO.findEntityById");
+                e.printStackTrace();
+            }
+            try {
+                close(connection);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return isCreated;
+    }
 
     @Override
     public ArrayList<Role> findAll() throws DAOException {
         ArrayList<Role> rolesList = new ArrayList<>();
 
 
-        String db_url = ConfigurationManager.getProperty("dburl");
-        String db_user = ConfigurationManager.getProperty("dbuser");
-        String db_password = ConfigurationManager.getProperty("dbpassword");
-        Connection connection = null;
+
         Statement statement = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try {
-            connection = DriverManager.getConnection(db_url, db_user, db_password);
+
+        try { connectionToData();
             preparedStatement = connection.prepareStatement(SQL_FIND_ALL_ROLES);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -103,37 +147,5 @@ public class SQLRoleDAO implements RoleDAO {
         return role;
     }
 
-    @Override
-    public boolean createRole(Role entity) throws DAOException {
-        String db_url = ConfigurationManager.getProperty("dburl");
-        String db_user = ConfigurationManager.getProperty("dbuser");
-        String db_password = ConfigurationManager.getProperty("dbpassword");
-        Connection connection = null;
-        Statement statement = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        boolean isCreated=false;
-        try {
-            connection = DriverManager.getConnection(db_url, db_user, db_password);
-            preparedStatement = connection.prepareStatement(SQL_CREATE_ROLE);
-            preparedStatement.setString(1, entity.getRole());
-            preparedStatement.executeUpdate();
-            isCreated = true;
-        } catch (SQLException e) {
-            throw new DAOException("Error in createEntity", e);
-        } finally {
-            try {
-                close(preparedStatement);
-            } catch (Exception e) {
-                log.println("couldn't close preparedStatement SQLRoleDAO.findEntityById");
-                e.printStackTrace();
-            }
-            try {
-                close(connection);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return isCreated;
-    }
+
 }

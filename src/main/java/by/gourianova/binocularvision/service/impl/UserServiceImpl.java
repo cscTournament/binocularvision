@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 	DAOProvider provider = DAOProvider.getInstance();
 	UserDAO userDAO = provider.getUserDao();
 
-@Override
+	@Override
 	public User authorization(String login, String password) throws ServiceException {
 		// validation
 		if (login == null || "".equals(login)) {// to bo cont....
@@ -25,19 +25,19 @@ public class UserServiceImpl implements UserService {
 		}
 
 
-	//	password = new MD5().md5Encode(password);
+		//	password = new MD5().md5Encode(password);
 		//TODO where put MD5?
-	log.println( "password NOT NUL  UserServiceImpl.authorization");
+		log.println("password NOT NUL  UserServiceImpl.authorization");
 
 		User user = null;
-	log.println("try to find user with "+login+" login and "+ password+" password ");
+		log.println("try to find user with " + login + " login and " + password + " password ");
 
-				try {
-					user = userDAO.authorization(login, password);
+		try {
+			user = userDAO.authorization(login, password);
 
-				} catch (DAOException daoException) {
-					daoException.printStackTrace();
-				}
+		} catch (DAOException daoException) {
+			daoException.printStackTrace();
+		}
 
 
 		if (user != null) log.println(" USER NOT NUL  UserServiceImpl.authorization");
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public ArrayList<User> takeAll() throws ServiceException {
+	public ArrayList<User> findAll() throws ServiceException {
 
 		DAOProvider provider = DAOProvider.getInstance();
 		UserDAO userDAO = provider.getUserDao();
@@ -80,5 +80,27 @@ public class UserServiceImpl implements UserService {
 
 		}
 
-		return isRegistered;}
+		return isRegistered;
 	}
+
+	@Override
+	public User findUserById(Integer id) throws ServiceException {
+		User user = null;
+		log.println("try to find user with " + id + " id ");
+		try {
+			user = userDAO.findUserById(id);
+		} catch (DAOException e) {
+			throw new ServiceException("Transaction failed in findUserById method", e);
+		}
+		if (user != null) log.println(" USER NOT NUL  UserServiceImpl.findUserById");
+		return user;
+	}
+@Override
+	public void updateUser(User user) throws ServiceException {
+		try {
+			userDAO.updateUser(user);
+		} catch (DAOException e) {
+			throw new ServiceException("Transaction failed in updateUser method", e);
+		}
+	}
+}

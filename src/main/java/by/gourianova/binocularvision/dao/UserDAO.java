@@ -17,4 +17,8 @@ public interface UserDAO {
 
     ArrayList<User> findAll() throws DAOException;
 
+    User findUserById(Integer id) throws DAOException;
+
+
+    void updateUser(User user) throws DAOException;
 }

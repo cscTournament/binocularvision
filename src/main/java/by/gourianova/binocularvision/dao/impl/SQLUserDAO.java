@@ -9,7 +9,6 @@ import by.gourianova.binocularvision.util.ConfigurationManager;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
@@ -24,8 +23,10 @@ public class SQLUserDAO implements UserDAO {
 
     private final static String SQL_CREATE_USER = "INSERT INTO users (Login, Password, First_Name, Last_Name, Balance) VALUES (?, ?, ?, ?,?);";
 
-    private final static String SQL_FIND_ALL_USER = "SELECT * FROM users;";
+    private final static String SQL_FIND_ALL_USERS = "SELECT * FROM users;";
     private final static String SQL_FIND_USER_BY_LOGIN_PASSWORD = "SELECT * FROM users WHERE login = ? AND password = ?;";
+    private final static String SQL_FIND_USER_BY_ID = "SELECT * FROM users WHERE id = ?;";
+    private final static String SQL_UPDATE_ROLE = "UPDATE users SET Roles_Id=? WHERE Id=?;";
 
     private static Connection connection;
 
@@ -34,35 +35,36 @@ public class SQLUserDAO implements UserDAO {
     private static String password;
     private static String name;
     private static String surname;
-    private static String balance;
-    private static LocalDate date;
+    private static BigDecimal balance;
+    //TODO: rewrite
+    private static final int role = 2;
+    //  private static LocalDate date;
     private static int roles_id;
-    private static String status;
 
 
- //   private final static String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login = ?;";
-   // private static final String OPEN_SESSION = "UPDATE users set session = 'online' WHERE id = ?;";
+    //   private final static String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login = ?;";
+    // private static final String OPEN_SESSION = "UPDATE users set session = 'online' WHERE id = ?;";
 
     //TODO: fix and add Create_time
 
-//	private final static String SQL_CREATE_USER = "INSERT INTO users (Login, Password, First_Name, Last_Name,  Balance, Create_time) VALUES (?, ?, ?, ?, ?,?);";
 
     static {
-      MYSQLDriverLoader.getInstance();
+        MYSQLDriverLoader.getInstance();
     }
 
-  public static void connectionToData() {
+    //TODO: move code to connectionPool code: to create!
+    public static void connectionToData() {
 
-      String db_url = ConfigurationManager.getProperty("dburl");
-      String db_user = ConfigurationManager.getProperty("dbuser");
-      String db_password = ConfigurationManager.getProperty("dbpassword");
-      try {
-          connection = DriverManager.getConnection(db_url, db_user, db_password);
-      } catch (SQLException e) {
-          log.println("Couldn'n connect to data base");
-          e.printStackTrace();
-      }
-  }
+        String db_url = ConfigurationManager.getProperty("dburl");
+        String db_user = ConfigurationManager.getProperty("dbuser");
+        String db_password = ConfigurationManager.getProperty("dbpassword");
+        try {
+            connection = DriverManager.getConnection(db_url, db_user, db_password);
+        } catch (SQLException e) {
+            log.println("Couldn'n connect to data base");
+            e.printStackTrace();
+        }
+    }
 
 
     @Override
@@ -73,13 +75,13 @@ public class SQLUserDAO implements UserDAO {
         ResultSet resultSet = null;
         boolean isRegistered = false;
 
-		//TODO: is it necessary to check uniq of login  ?
+        //TODO: is it necessary to check uniq of login  ?
 
         try {
             connectionToData();
-           statement = connection.createStatement();
+            statement = connection.createStatement();
 
-            //TODO: delete?
+            //TODO: delete or remove?
             statement.executeUpdate(SQL_CREATE_TABLE_USERS);
 
             String login = regInfo.getLogin();
@@ -114,7 +116,7 @@ public class SQLUserDAO implements UserDAO {
                     e.printStackTrace();
                 }
             }
-          try {
+            try {
                 statement.close();
             } catch (SQLException e) {
                 log.println("Couldn't close statement");
@@ -140,118 +142,120 @@ public class SQLUserDAO implements UserDAO {
     }
 
 
-
     @Override
     public User authorization(String login, String password) {
 
-
-        //TODO: через прокси?
-        //Proxy
-      //  Connection connection = null;
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         User user = null;
 
 
-    try{        connectionToData();
+        try {
+            connectionToData();
             preparedStatement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_PASSWORD);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
 
             resultSet = preparedStatement.executeQuery();
-           //TODO: while?
-           if (resultSet.next()) {
+            int count=0;
+            //TODO: while?
+            while (resultSet.next()) {
+                id = resultSet.getInt("Id");
+                name = resultSet.getString("First_Name");
+                surname = resultSet.getString("Last_Name");
+                balance = resultSet.getBigDecimal("Balance");
+                //TODO: role and date!!!
+                //  int role = resultSet.getInt("Role"); int role = 2;
+                int role = 2;
+                // if (surname=="Gourianova")  role = 3;
 
-               int id = resultSet.getInt("Id");
-               String name = resultSet.getString("First_Name");
-               String surname = resultSet.getString("Last_Name");
-               BigDecimal balance = resultSet.getBigDecimal("Balance");
-               //TODO: role and date!!!
-               //  int role = resultSet.getInt("Role");
-               int role = 3;
-               // LocalDate create_date = resultSet.getDate("Create_time").toLocalDate();
-               user = new User(id, login, password, name, surname, balance, role);//, create_date);
-               log.println("found user " + name + " " + surname);
+                // LocalDate create_date = resultSet.getDate("Create_time").toLocalDate();
+                user = new User(id, login, password, name, surname, balance, role);//, create_date);
+                log.println(count+" found user " + name + " " + surname);
 
-           }
-
+            }
+            log.println("found " + count+ " users");
 
         } catch (SQLException e) {
 
-                //TODO:&&&&
-                try {
-                    throw new DAOException("Error in SQLUserDAO.authorization method", e);
-                } catch (DAOException daoException) {
-                    daoException.printStackTrace();
-                }
-		} finally {
+            //TODO:&&&&
+            try {
+                throw new DAOException("Error in SQLUserDAO.authorization method", e);
+            } catch (DAOException daoException) {
+                daoException.printStackTrace();
+            }
+        } finally {
 
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-					log.println("Couldn't close resultSet");
-					e.printStackTrace();
-				}
-			}
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                log.println("Couldn't close resultSet");
+                e.printStackTrace();
+            }
+        }
 
-			try {
-				preparedStatement.close();
-			} catch (SQLException e) {
-				log.println("Couldn't close preparedStatement");
-				e.printStackTrace();
-			}
+        try {
+            preparedStatement.close();
+        } catch (SQLException e) {
+            log.println("Couldn't close preparedStatement");
+            e.printStackTrace();
+        }
 
-			if (connection != null) {
-				try {
-					close(connection);
-				} catch (Exception e) {
-					log.println("Couldn't close not null connection");
-					e.printStackTrace();
-				}
-			}
-		if (user!=null) log.println("AUTHORISATION OK: SQLUserDAO");
+        if (connection != null) {
+            try {
+                close(connection);
+            } catch (Exception e) {
+                log.println("Couldn't close not null connection");
+                e.printStackTrace();
+            }
+        }
+        if (user != null) log.println("AUTHORISATION OK: SQLUserDAO");
 
 
-
-		return user;
+        return user;
     }
-//TODO:debug
- @Override
+
+    //TODO:debug
+    @Override
     public ArrayList<User> findAll() throws DAOException {
-     ArrayList<User> usersList = new ArrayList<>();
-/*        Statement statement = null;
-        ResultSet resultSet=null;
+        ArrayList<User> usersList = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connectionToData();
-            resultSet =statement.executeQuery(SQL_FIND_ALL_USER);
-
-           if (resultSet.next()) {
-                int id = resultSet.getInt("Id");
-                String login = resultSet.getString("Login");
-                String password = resultSet.getString("Password");
-                String name = resultSet.getString("First_Name");
-                String surname = resultSet.getString("Last_Name");
-                BigDecimal balance = resultSet.getBigDecimal("Balance");
-                int role = resultSet.getInt("Role");
-               // LocalDate create_date = resultSet.getDate("Create_time").toLocalDate();
+            log.println("connection Ok");
+            preparedStatement = connection.prepareStatement(SQL_FIND_ALL_USERS);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt("Id");
+             //   log.println(id + "id");
+                login = resultSet.getString("Login");
+                password = resultSet.getString("Password");
+                name = resultSet.getString("First_Name");
+                surname = resultSet.getString("Last_Name");
+                balance = resultSet.getBigDecimal("Balance");
+                int role = 2;//resultSet.getInt("Role");
+                // LocalDate create_date = resultSet.getDate("Create_time").toLocalDate();
+                //log.println(id + login + password + name + surname + balance + role);
                 usersList.add(new User(id, login, password, name, surname, balance, role));//, create_date));
             }
 
         } catch (SQLException e) {
             throw new DAOException("Error in findAll method", e);
-        } finally {try {
+        } finally {
+            try {
 
-            resultSet.close();
-        } catch (SQLException e) {
-            log.println("Couldn't close resultSet");
-            e.printStackTrace();
-        }
+                resultSet.close();
+            } catch (SQLException e) {
+                log.println("Couldn't close resultSet");
+                e.printStackTrace();
+            }
 
             try {
-                statement.close();
+                preparedStatement.close();
             } catch (SQLException e) {
-                log.println("Couldn't close statement");
+                log.println("Couldn't close  preparedStatement");
                 e.printStackTrace();
             }
 
@@ -265,9 +269,82 @@ public class SQLUserDAO implements UserDAO {
                 }
             }
         }
-*/
+
         return usersList;
     }
 
+    @Override
+    public User findUserById(Integer id) throws DAOException {
+        User user = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connectionToData();
+            preparedStatement = connection.prepareStatement(SQL_FIND_USER_BY_ID);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                //TODO: build?
+                //user = buildUser(resultSet);
+                //Integer id = resultSet.getInt("Id");
+                String login = resultSet.getString("Login");
+                String password = resultSet.getString("Password");
+                String name = resultSet.getString("First_Name");
+                String surname = resultSet.getString("Last_Name");
+                BigDecimal balance = resultSet.getBigDecimal("Balance");
+                int role = resultSet.getInt("Role");
+                user = new User(id, login, password, name, surname, balance, role);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error in SQLUserDAO.findUserById method", e);
+        } finally {
+            try {
+                close(preparedStatement);
+            } catch (Exception e) {
+                log.println("Couldn't close preparedStatement");
+                e.printStackTrace();
+            }
+            if (connection != null) {
+
+                try {
+                    close(connection);
+                } catch (Exception e) {
+                    log.println("Couldn't close not null connection");
+                    e.printStackTrace();
+                }
+            }
+        }
+        return user;
+    }
+    @Override
+    public void updateUser(User user) throws DAOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connectionToData();
+            preparedStatement = connection.prepareStatement(SQL_UPDATE_ROLE);
+            preparedStatement.setInt(1, user.getRoleId());
+            preparedStatement.setInt(2, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("Error in updateEntity method", e);
+        } finally {
+            try {
+                close(preparedStatement);
+            } catch (Exception e) {
+                log.println("Couldn't close preparedStatement");
+                e.printStackTrace();
+            }
+            try {
+                close(connection);
+            } catch (Exception e) {
+                log.println("Couldn't close not null connection");
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
+
+
 

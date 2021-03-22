@@ -8,7 +8,11 @@ import java.util.ArrayList;
 public interface UserService {
 	User authorization(String login, String password) throws ServiceException;
 
-	ArrayList<User> takeAll() throws ServiceException;
+	ArrayList<User> findAll() throws ServiceException;
 
 	boolean registration(RegistrationInfo regInfo) throws ServiceException;
+
+    User findUserById(Integer id) throws ServiceException;
+
+    void updateUser(User user) throws ServiceException;
 }

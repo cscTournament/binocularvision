@@ -1,6 +1,8 @@
 package by.gourianova.binocularvision.controller.command;
 
 import by.gourianova.binocularvision.controller.command.impl.*;
+import by.gourianova.binocularvision.controller.command.impl.admin.FindUser;
+import by.gourianova.binocularvision.controller.command.impl.admin.ShowAllUsers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +20,10 @@ public class CommandProvider {
 		commands.put(CommandName.GOTOINDEXPAGE, new GoToIndexPage());
 		commands.put(CommandName.GOTOMAINPAGE, new GoToMainPage());
 		commands.put(CommandName.GOTOLOGINPAGE, new GoToLoginPage());
-	  // commands.put(CommandName.CHANGELOCALE, new ChangeLocale());
+		commands.put(CommandName.GOTOADMINPAGE, new GoToAdminPage());
+		commands.put(CommandName.GOTOAPPSPAGE , new GoToAppsPage());
+		commands.put(CommandName.SHOWALLUSERS, new ShowAllUsers());
+		commands.put(CommandName.FINDUSER, new FindUser());
 		commands.put(CommandName.LOGOUT, new Logout());
 	}
 	
