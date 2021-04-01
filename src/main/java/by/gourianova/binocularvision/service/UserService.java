@@ -2,6 +2,7 @@ package by.gourianova.binocularvision.service;
 
 import by.gourianova.binocularvision.bean.RegistrationInfo;
 import by.gourianova.binocularvision.bean.User;
+import by.gourianova.binocularvision.bean.UserChangeInfo;
 
 import java.util.ArrayList;
 
@@ -15,4 +16,8 @@ public interface UserService {
     User findUserById(Integer id) throws ServiceException;
 
     void updateUser(User user) throws ServiceException;
+
+    boolean updateUserData(UserChangeInfo userloginInfo)throws ServiceException;
+
+    boolean deleteUserById(Integer id) throws ServiceException;
 }

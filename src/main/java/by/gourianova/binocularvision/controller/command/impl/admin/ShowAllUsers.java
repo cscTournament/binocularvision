@@ -15,6 +15,7 @@ import static by.gourianova.binocularvision.util.PageOfConstants.ALL_USERS;
 import static by.gourianova.binocularvision.util.PageOfConstants.ERROR_PAGE;
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
+
 public class ShowAllUsers implements Command {
     private final static String USERS_LIST = "usersList";
     private final static String MESSAGE = "message";

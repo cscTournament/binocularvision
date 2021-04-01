@@ -31,15 +31,7 @@ public class MainServlet extends HttpServlet {
         out.write("<head>");
         out.write("<title>You are welcome!</title>");
 
-        out.write("<style>"+
-                "body {"+
-           "background: url(../webapp/images/bv.jpg);"+
-          "}"+
-              "  hr{"+
-              " background:\"lightgreensea\";"+
-               " background-color:\"lightgreensea\"; height: 12px;"+
-          "        }"+
-         "</style>");
+
         out.write("</head>");
         out.write("<body>");
         String message=req.getParameter("message");
@@ -48,16 +40,15 @@ public class MainServlet extends HttpServlet {
 
             //TODO: to choose font
       out.write("<center>"+"<img src=\"logo_large.jpg\">"+"</center>");
-            out.write("<br><br> " +
-                    "<p style=\"font-family=glyphicon\">");
-         //   out.write("<center>"+"<h3>"+"Good day, Anonymous" + "<br>");
-            out.write("<p style=\"font-family=glyphicon\">"+"<br>"+"<h3>"+"<center>"+
+
+
+            out.write("<br>"+"<h3>"+"<center>"+
                     "<p style=\"font-family=glyphicon\">"+"We represent the scope of medical apps for the training and rehabilitation of disorders of binocular"+
                    "and monocular vision"+
                     "<br> (including  strabismus  amblyopia), <br>"+
                     "prevention of these disorders in healthy individuals,&nbsp;"+
                     "as well as developing apps for the stimulation of sensory-motor mechanisms and improve coordination and logical thinking. <br> Our apps are effectively used for children of preschool and school age"+
-                    "</center>"+"</font>"+"</h3>");
+                    "</center>"+"</font>"+"</h3>"+"</p>");
 
             out.write("<center>&nbsp;<h3> <hr  width=30%  color=\"#20B2AA\" ></h3></center>");
             //TODO: to change status?

@@ -1,27 +1,12 @@
 package by.gourianova.binocularvision.service;
-/*
-import by.gourianova.apptrainer.dao.HttpAddressDao;
-import by.gourianova.apptrainer.entity.HttpAddress;
-import by.gourianova.apptrainer.exception.DaoException;
-*/
 
-public class HttpAddressService {
 
-  /*  private HttpAddressDao httpAddressDao = new HttpAddressDao();
+import by.gourianova.binocularvision.bean.HttpAddress;
 
-    public ArrayList<HttpAddress> findAll() throws ServiceException {
-        try {
-            return httpAddressDao.findAll();
-        } catch (DaoException e) {
-            throw new ServiceException("Transaction failed in findAll method", e);
-        }
-    }
+import java.util.ArrayList;
 
-    public boolean createHttpAddress(HttpAddress httpAddress) throws ServiceException {
-        try {
-            return httpAddressDao.createEntity(httpAddress);
-        } catch (DaoException e) {
-            throw new ServiceException("Transaction failed in createStation method", e);
-        }
-    }
-*/}
+public interface  HttpAddressService {
+    ArrayList<HttpAddress> findAll() throws ServiceException;
+
+    boolean createHttpAddress(HttpAddress httpAddress) throws ServiceException;
+}

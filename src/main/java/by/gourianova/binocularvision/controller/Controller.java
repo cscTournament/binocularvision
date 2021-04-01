@@ -4,6 +4,7 @@ package by.gourianova.binocularvision.controller;
 import by.gourianova.binocularvision.controller.action.Action;
 import by.gourianova.binocularvision.controller.action.ActionFactory;
 import by.gourianova.binocularvision.controller.action.ActionType;
+import by.gourianova.binocularvision.controller.action.Router;
 import by.gourianova.binocularvision.controller.command.Command;
 import by.gourianova.binocularvision.controller.command.CommandName;
 import by.gourianova.binocularvision.controller.command.CommandProvider;
@@ -42,16 +43,12 @@ public class Controller extends HttpServlet {
 
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
         Command command = null;
 
-      //  log.println(name + " name");
         Router router;
-
         HttpSession session = request.getSession();
-
         String name = request.getParameter("command");
+        log.println(name + " name");
            boolean isAction = true;
             try {
                 ActionType.valueOf(name.toUpperCase());

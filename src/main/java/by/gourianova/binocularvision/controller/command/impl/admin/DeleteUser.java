@@ -1,6 +1,5 @@
 package by.gourianova.binocularvision.controller.command.impl.admin;
 
-import by.gourianova.binocularvision.bean.User;
 import by.gourianova.binocularvision.controller.command.Command;
 import by.gourianova.binocularvision.service.ServiceException;
 import by.gourianova.binocularvision.service.UserService;
@@ -13,41 +12,33 @@ import javax.servlet.http.HttpServletResponse;
 import static by.gourianova.binocularvision.util.PageOfConstants.*;
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
-
-public class FindUser implements Command {
+public class DeleteUser implements Command {
     private final static String USER_ID = "userId";
-    private final static String USER = "userOne";
-    private final static String EMPTY_USER = "emptyUser";
     private final static String MESSAGE = "message";
-    private UserService userService = new UserServiceImpl();
-
+    private final UserService userService = new UserServiceImpl();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Integer userId = Integer.parseInt(request.getParameter(USER_ID));
+        boolean isDeleted = false;
         try {
-            int userId = Integer.parseInt(request.getParameter(USER_ID));
-            User user = userService.findUserById(userId);
+            isDeleted = userService.deleteUserById(userId);
+            if (isDeleted) {
+                request.setAttribute("message", "delete.user.ok");
+                log.println("user with " + userId + " is deleted ");
 
-            if (user != null){
-                request.setAttribute(USER, user);
-              //TODO:fix to get id (separate bean?)
-              // request.getSession().setAttribute(USER_ID, user.getId());
-
-                request.setAttribute(USER_ID, user.getId());
-                request.setAttribute(MESSAGE,"Shown one user");
-                log.println(request.getAttribute(USER_ID) + " id");
             } else {
-                request.setAttribute(EMPTY_USER, Boolean.TRUE);
-                request.setAttribute(MESSAGE,"Couldn't find user");
+                request.setAttribute("message", "delete.user.not");
+                log.println("user with " + userId + " is Not deleted ");
             }
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(ONE_USER);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(DELETE_USER_PAGE2);
             requestDispatcher.forward(request, response);
-            log.println(" FindUser ok");
 
         } catch (ServiceException e) {
             request.getSession().setAttribute(MESSAGE, e.getMessage());
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(ERROR_PAGE);
-            requestDispatcher.forward(request, response);
+            e.printStackTrace();
         }
     }
 }
+

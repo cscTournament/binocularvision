@@ -1,6 +1,6 @@
 package by.gourianova.binocularvision.main;
 
-import by.gourianova.binocularvision.util.tetris.BVTetris;
+import by.gourianova.binocularvision.util.tetris.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,11 +17,13 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //TODO: think th logic of visiting pages
 
-BVTetris bvTetris= new BVTetris();
-bvTetris.run();
+        BVTetris bvTetris= new BVTetris();
+        bvTetris.run();
+
 //           getServletContext().getRequestDispatcher("/ListOfApps/index").forward(req, resp); //if uncomment - the first page is registration
 
        //resp.sendRedirect(req.getContextPath() + "/ListOfApps/index");
         //resp.sendRedirect(req.getContextPath() + "/index");
     }
+
 }

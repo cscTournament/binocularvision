@@ -1,7 +1,5 @@
 package by.gourianova.binocularvision.controller.action;
 
-import by.gourianova.binocularvision.controller.Router;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

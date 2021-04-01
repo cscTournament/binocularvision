@@ -3,7 +3,7 @@ package by.gourianova.binocularvision.dao.impl;
 import by.gourianova.binocularvision.bean.Role;
 import by.gourianova.binocularvision.dao.DAOException;
 import by.gourianova.binocularvision.dao.RoleDAO;
-import by.gourianova.binocularvision.util.ConfigurationManager;
+import by.gourianova.binocularvision.dao.db.ConfigurationManager;
 
 
 import java.sql.*;
@@ -14,8 +14,10 @@ import static org.apache.logging.log4j.core.util.Closer.close;
 
 public class SQLRoleDAO implements RoleDAO {
 
+    //TODO: test
+//TODO: utf-8 database! to save datas in russian
     private final static String SQL_CREATE_TABLE_ROLES = "create table if not exists users(id INT(11) NOT NULL auto_increment," +
-            "Role varchar(20),  primary key (id) );";
+            "Role varchar(20),  primary key (id) ) DEFAULT CHARSET=utf8;";
     private final static String SQL_CREATE_ROLE = "INSERT INTO roles (Role) VALUES (?);";
 
     private final static String SQL_FIND_ALL_ROLES = "SELECT * FROM roles";
@@ -55,6 +57,7 @@ public class SQLRoleDAO implements RoleDAO {
             preparedStatement.setString(1, entity.getRole());
             preparedStatement.executeUpdate();
             isCreated = true;
+            log.println("SQLRoleDAO.createRole OK");
         } catch (SQLException e) {
             throw new DAOException("Error in createEntity", e);
         } finally {

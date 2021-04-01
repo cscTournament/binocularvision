@@ -19,16 +19,17 @@ public class SaveNewUser implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String password=request.getParameter("password");
-
-		//TODO: decide were should be this code
 		password= MD5.md5Encode(password);
 		LocalDate dateTime=LocalDate.now();
 		RegistrationInfo regInfo = new RegistrationInfo(request.getParameter("first_name"),request.getParameter("last_name"),request.getParameter("login"),password,request.getParameter("balance"),dateTime);
 		UserService userService = new UserServiceImpl();
-		userService.registration(regInfo);
-		log.println("Registration SaveNewUser ok");
-
-		request.setAttribute("message", "Registration OK");
+		boolean isRegistered =userService.registration(regInfo);
+		if(isRegistered) {
+			log.println("Registration SaveNewUser ok");
+			request.setAttribute("message", "Registration OK");
+		}
+		else{
+		request.setAttribute("message", "Registration is failed: try to enter another login or password. Balance should be positive too! ");}
 		log.println	("class SaveNewUser implements Command "+request.getAttribute("message"));
 		response.sendRedirect("Controller?command=gotoindexpage&message="+request.getAttribute("message"));
 	}
